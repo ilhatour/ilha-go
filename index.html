@@ -12,11 +12,12 @@
 <title>Ilha Go — Transfer Rio ↔ Ilha Grande, no horário do seu barco</title>
 <meta name="description" content="Transfer porta a porta do Rio até a Vila do Abraão, Ilha Grande. Terrestre + travessia, pontual e monitorado — a lancha espera a nossa van. Reserve pelo WhatsApp." />
 <meta name="theme-color" content="#000000" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Ilha Go — Transfer Rio ↔ Ilha Grande" />
 <meta property="og:description" content="Do aeroporto ao cais, no horário certo. A lancha espera a nossa van — você não perde a travessia." />
-<!-- <meta property="og:image" content="A DEFINIR" /> -->
+<meta property="og:image" content="https://ilhago.com.br/assets/logo-original.png" />
 
 <!-- Fonts: Barlow Semi Condensed (display), Inter (corpo), IBM Plex Mono (dados) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -116,7 +117,7 @@
   }
   .nav-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; height:66px; }
   .brand{ display:flex; align-items:center; gap:.5rem; color:var(--clara); }
-  .brand-badge{ font-size:1.2rem; }
+  .brand-logo{ height:40px; width:auto; display:block; }
   .brand-name{ font-family:var(--display); font-weight:800; font-size:1.3rem; letter-spacing:.06em; color:var(--clara); text-transform:uppercase; }
   .nav-links{ display:flex; align-items:center; gap:1.8rem; }
   .nav-links a{ font-size:.92rem; color:var(--clara-60); font-weight:500; transition:color .15s ease; }
@@ -381,6 +382,7 @@
   .footer{ background:var(--preto); color:var(--clara-60); padding-block:3rem 2.5rem; border-top:1px solid var(--linha-esc); }
   .footer-top{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem; }
   .footer .brand-name{ margin-bottom:.6rem; display:block; }
+  .footer-logo{ height:48px; width:auto; display:block; margin-bottom:1rem; }
   .footer-tag{ max-width:30ch; font-size:.9rem; }
   .footer-cols{ display:flex; gap:3rem; flex-wrap:wrap; }
   .footer-col h4{ font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--clara); margin:0 0 .8rem; }
@@ -433,9 +435,8 @@
 <!-- ============================ NAV ============================ -->
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="#topo" aria-label="Ilha Go — início">
-      <span class="brand-badge" aria-hidden="true">🚙</span>
-      <span class="brand-name">Ilha&nbsp;Go</span>
+    <a class="brand" href="#topo" aria-label="Ilha Go Transfer — início">
+      <img src="assets/logo-dark.png" alt="Ilha Go Transfer" class="brand-logo" width="435" height="191" />
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
       <a href="#servicos">Transfers</a>
@@ -836,7 +837,7 @@
   <div class="wrap">
     <div class="footer-top">
       <div>
-        <span class="brand-name">Ilha&nbsp;Go</span>
+        <img src="assets/logo-dark.png" alt="Ilha Go Transfer" class="footer-logo" width="435" height="191" />
         <p class="footer-tag">Transfer Rio ↔ Ilha Grande. O primeiro contato físico da sua viagem pro paraíso.</p>
       </div>
       <div class="footer-cols">
@@ -863,7 +864,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="ano">2026</span> Ilha Go · Rio de Janeiro</span>
-      <span>TEMA "Preto & Cobalto · Aço" · v0.2.0 · 2026-07-02</span>
+      <span>TEMA "Preto & Cobalto · Aço" · v0.3.0 · 2026-07-02</span>
     </div>
   </div>
 </footer>
