@@ -4,53 +4,56 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ILHA GO · one-page · TEMA "Rota" · v0.1.0 · 2026-07-02 -->
-<!-- Transfer terrestre Rio <-> cais de embarque (Mangaratiba / Conceicao de Jacarei) para a Ilha Grande. -->
-<!-- Deploy pipeline: static -> GitHub -> Hostinger auto-deploy. index.html na raiz. -->
+<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.2.0 · 2026-07-02 -->
+<!-- Transfer terrestre + travessia Rio <-> Ilha Grande (Vila do Abraao). -->
+<!-- Dados: TARIFARIO OFICIAL 2026 (Notion, fonte canonica) + pagina Ilha Tour. -->
+<!-- Deploy: static -> GitHub (ilhatour/ilha-go) -> Hostinger auto-deploy em public_html. -->
 
 <title>Ilha Go — Transfer Rio ↔ Ilha Grande, no horário do seu barco</title>
-<meta name="description" content="Transfer porta a porta do Rio até o cais de Mangaratiba ou Conceição de Jacareí. Pontual, seguro, monitorado por GPS — e a lancha espera a nossa van. Reserve pelo WhatsApp." />
-<meta name="theme-color" content="#15191D" />
+<meta name="description" content="Transfer porta a porta do Rio até a Vila do Abraão, Ilha Grande. Terrestre + travessia, pontual e monitorado — a lancha espera a nossa van. Reserve pelo WhatsApp." />
+<meta name="theme-color" content="#000000" />
 
-<!-- Open Graph (og:image A DEFINIR quando houver foto real) -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Ilha Go — Transfer Rio ↔ Ilha Grande" />
-<meta property="og:description" content="A gente cuida da estrada. Você já chega de férias. Transfer no horário certo pra sua lancha." />
+<meta property="og:description" content="Do aeroporto ao cais, no horário certo. A lancha espera a nossa van — você não perde a travessia." />
 <!-- <meta property="og:image" content="A DEFINIR" /> -->
 
-<!-- Fonts: Barlow Semi Condensed (display/sinalizacao), Inter (corpo), IBM Plex Mono (dados) -->
+<!-- Fonts: Barlow Semi Condensed (display), Inter (corpo), IBM Plex Mono (dados) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
   /* ============================================================
-     TOKENS — Tema "Rota"
+     TOKENS — Tema "Preto & Cobalto · Aço" (paleta oficial Ilha Go)
      ============================================================ */
   :root{
     /* Cores */
-    --asfalto:   #15191D;  /* road graphite — hero, secao-rota, footer */
-    --asfalto-2: #1E252B;  /* card sobre fundo escuro */
-    --bruma:     #F2F5F4;  /* secao clara alternada */
-    --branco:    #FFFFFF;
-    --mare:      #16A79C;  /* turquesa — a agua / a chegada (DNA do grupo) */
-    --mare-ink:  #0B5C56;  /* turquesa escura para texto sobre claro */
-    --mint:      #DCEDE9;  /* tint de apoio */
-    --sinal:     #FFB020;  /* ambar de sinalizacao — wayfinding + CTA */
-    --sinal-ink: #2E2000;  /* texto sobre o ambar */
-    --tinta:     #1B2228;  /* texto sobre claro */
-    --tinta-70:  #4A555D;  /* texto secundario sobre claro */
-    --clara:     #EAF0EE;  /* texto sobre escuro */
-    --clara-60:  #9AA7AD;  /* texto secundario sobre escuro */
-    --linha-esc: rgba(255,255,255,.12); /* divisoria sobre escuro */
-    --linha-cl:  rgba(21,25,29,.10);    /* divisoria sobre claro */
+    --preto:      #000000;  /* ancora — hero, secoes escuras, footer */
+    --preto-2:    #101419;  /* card sobre fundo preto */
+    --cobalto:    #0047AB;  /* primaria — titulos, acentos, faixa de prova, links */
+    --cobalto-esc:#00337F;  /* cobalto para texto sobre claro */
+    --cobalto-tint:#DCE6F5; /* tint de apoio */
+    --aco:        #9AA7B2;  /* cinza aco — apoio industrial/frota, subtitulos */
+    --aco-esc:    #66727E;  /* aco para texto secundario sobre claro */
+    --nevoa:      #EEF1F4;  /* secao clara */
+    --branco:     #FFFFFF;  /* fundo */
+    --ambar:      #FFB020;  /* ACAO — exclusivo de CTA/emfase de acao */
+    --ambar-hi:   #FFC24D;  /* hover do ambar */
+    --ambar-ink:  #2E2000;  /* texto sobre o ambar */
+    --tinta:      #14181C;  /* texto sobre claro */
+    --tinta-60:   #55606B;  /* texto secundario sobre claro */
+    --clara:      #F0F3F6;  /* texto sobre preto */
+    --clara-60:   #9AA7B2;  /* texto secundario sobre preto (= aco) */
+    --linha-esc:  rgba(255,255,255,.14); /* divisoria sobre preto */
+    --linha-cl:   rgba(0,0,0,.10);       /* divisoria sobre claro */
 
     /* Tipografia */
     --display: "Barlow Semi Condensed", "Arial Narrow", sans-serif;
     --body:    "Inter", system-ui, -apple-system, sans-serif;
     --mono:    "IBM Plex Mono", ui-monospace, monospace;
 
-    /* Espacamento / medidas */
+    /* Medidas */
     --wrap: 1180px;
     --pad: clamp(1.25rem, 5vw, 2.5rem);
     --sec-y: clamp(4.5rem, 9vw, 7.5rem);
@@ -64,49 +67,43 @@
   *,*::before,*::after{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
   body{
-    margin:0;
-    font-family:var(--body);
-    color:var(--tinta);
-    background:var(--branco);
-    line-height:1.6;
-    font-size:clamp(1rem, .95rem + .3vw, 1.075rem);
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    margin:0; font-family:var(--body); color:var(--tinta); background:var(--branco);
+    line-height:1.6; font-size:clamp(1rem, .95rem + .3vw, 1.075rem);
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
   img{ max-width:100%; display:block; }
   a{ color:inherit; text-decoration:none; }
   h1,h2,h3{ font-family:var(--display); font-weight:800; line-height:1.02; margin:0; letter-spacing:-.01em; }
   p{ margin:0; }
-  ::selection{ background:var(--sinal); color:var(--sinal-ink); }
+  ::selection{ background:var(--ambar); color:var(--ambar-ink); }
 
   .wrap{ width:100%; max-width:var(--wrap); margin-inline:auto; padding-inline:var(--pad); }
 
-  /* Eyebrow — etiqueta mono de wayfinding */
+  /* Eyebrow — pílula cobalto */
   .eyebrow{
     font-family:var(--mono); font-weight:600;
-    font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+    font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
     display:inline-flex; align-items:center; gap:.6em;
+    background:var(--cobalto); color:#fff; padding:.5em 1em; border-radius:999px;
   }
-  .eyebrow::before{
-    content:""; width:26px; height:2px; background:var(--sinal); display:inline-block;
-  }
+  .eyebrow.on-light{ background:var(--cobalto-tint); color:var(--cobalto-esc); }
 
-  /* Botoes */
+  /* Botões */
   .btn{
     display:inline-flex; align-items:center; gap:.55em;
-    font-family:var(--display); font-weight:700; font-size:1.05rem; letter-spacing:.01em;
-    padding:.85em 1.4em; border-radius:999px; border:2px solid transparent;
+    font-family:var(--display); font-weight:700; font-size:1.05rem; letter-spacing:.03em; text-transform:uppercase;
+    padding:.85em 1.5em; border-radius:999px; border:2px solid transparent;
     cursor:pointer; transition:transform .15s ease, background .2s ease, border-color .2s ease, color .2s ease;
     white-space:nowrap;
   }
-  .btn-primary{ background:var(--sinal); color:var(--sinal-ink); }
-  .btn-primary:hover{ transform:translateY(-2px); background:#FFC24D; }
-  .btn-ghost{ background:transparent; color:var(--clara); border-color:var(--linha-esc); }
+  .btn-primary{ background:var(--ambar); color:var(--ambar-ink); }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--ambar-hi); }
+  .btn-ghost{ background:transparent; color:var(--clara); border-color:var(--aco); }
   .btn-ghost:hover{ border-color:var(--clara); transform:translateY(-2px); }
-  .btn-ghost-dark{ background:transparent; color:var(--tinta); border-color:var(--linha-cl); }
-  .btn-ghost-dark:hover{ border-color:var(--tinta); transform:translateY(-2px); }
+  .btn-ghost-dark{ background:transparent; color:var(--cobalto-esc); border-color:var(--linha-cl); }
+  .btn-ghost-dark:hover{ border-color:var(--cobalto); transform:translateY(-2px); }
   .btn:focus-visible, a:focus-visible, button:focus-visible{
-    outline:3px solid var(--mare); outline-offset:3px;
+    outline:3px solid var(--ambar); outline-offset:3px;
   }
 
   /* ============================================================
@@ -114,87 +111,70 @@
      ============================================================ */
   .nav{
     position:sticky; top:0; z-index:50;
-    background:rgba(21,25,29,.85); backdrop-filter:blur(10px);
+    background:rgba(0,0,0,.9); backdrop-filter:blur(10px);
     border-bottom:1px solid var(--linha-esc);
   }
-  .nav-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; height:68px; }
-  .brand{ display:flex; align-items:center; gap:.6rem; color:var(--clara); }
-  .brand-mark{
-    font-family:var(--display); font-weight:800; font-size:1.35rem; letter-spacing:.02em;
-    color:var(--asfalto); background:var(--sinal); border-radius:8px;
-    padding:.05em .45em .12em; line-height:1;
-  }
-  .brand-name{ font-family:var(--display); font-weight:700; font-size:1.2rem; letter-spacing:.02em; color:var(--clara); }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; height:66px; }
+  .brand{ display:flex; align-items:center; gap:.5rem; color:var(--clara); }
+  .brand-badge{ font-size:1.2rem; }
+  .brand-name{ font-family:var(--display); font-weight:800; font-size:1.3rem; letter-spacing:.06em; color:var(--clara); text-transform:uppercase; }
   .nav-links{ display:flex; align-items:center; gap:1.8rem; }
-  .nav-links a{
-    font-size:.92rem; color:var(--clara-60); font-weight:500; transition:color .15s ease;
-  }
+  .nav-links a{ font-size:.92rem; color:var(--clara-60); font-weight:500; transition:color .15s ease; }
   .nav-links a:hover{ color:var(--clara); }
-  .nav-cta{ display:inline-flex; }
+  .nav-cta{ display:inline-flex; font-size:.92rem; padding:.6em 1.2em; }
   .nav-toggle{
     display:none; background:none; border:1px solid var(--linha-esc); border-radius:8px;
     width:44px; height:40px; color:var(--clara); font-size:1.3rem; cursor:pointer;
   }
 
   /* ============================================================
-     HERO — asfalto (a estrada)
+     HERO — preto
      ============================================================ */
   .hero{
-    background:var(--asfalto); color:var(--clara);
-    position:relative; overflow:hidden;
+    background:var(--preto); color:var(--clara); position:relative; overflow:hidden;
     padding-top:clamp(3.5rem,7vw,5.5rem); padding-bottom:clamp(3rem,6vw,4.5rem);
   }
-  /* faixas de rodovia ao fundo, discretas */
   .hero::before{
-    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.8;
     background:
-      radial-gradient(120% 80% at 85% -10%, rgba(22,167,156,.16), transparent 55%),
-      radial-gradient(90% 70% at 5% 110%, rgba(255,176,32,.08), transparent 60%);
+      radial-gradient(120% 80% at 88% -20%, rgba(0,71,171,.35), transparent 55%),
+      radial-gradient(80% 60% at 0% 120%, rgba(154,167,178,.10), transparent 60%);
   }
   .hero-grid{
-    position:relative; display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(2rem,5vw,4rem);
-    align-items:center;
+    position:relative; display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(2rem,5vw,4rem); align-items:center;
   }
-  .hero h1{
-    font-size:clamp(2.6rem, 2rem + 4vw, 4.75rem);
-    text-transform:uppercase;
-  }
-  .hero h1 .hl{ color:var(--sinal); }
+  .hero h1{ font-size:clamp(2.6rem, 2rem + 4vw, 4.75rem); text-transform:uppercase; }
+  .hero h1 .soft{ color:var(--aco); }
   .hero-sub{
-    margin-top:1.35rem; max-width:34ch; color:var(--clara);
+    margin-top:1.35rem; max-width:36ch; color:var(--clara);
     font-size:clamp(1.05rem,1rem + .4vw,1.22rem);
   }
+  .hero-sub b{ color:var(--clara); font-weight:600; }
   .hero-actions{ margin-top:2rem; display:flex; flex-wrap:wrap; gap:.9rem; }
-  .hero-trust{
-    margin-top:1.6rem; display:flex; flex-wrap:wrap; gap:.5rem 1.4rem;
-    font-family:var(--mono); font-size:.78rem; color:var(--clara-60); letter-spacing:.04em;
-  }
-  .hero-trust span{ display:inline-flex; align-items:center; gap:.45em; }
-  .hero-trust b{ color:var(--mare); font-weight:600; }
 
-  /* Cartao ROTA (a assinatura em miniatura no hero) */
+  /* Cartão ROTA (assinatura em miniatura) */
   .route-card{
-    background:var(--asfalto-2); border:1px solid var(--linha-esc);
+    background:var(--preto-2); border:1px solid var(--linha-esc);
     border-radius:var(--radius-lg); padding:clamp(1.3rem,3vw,1.8rem);
-    box-shadow:0 30px 60px -30px rgba(0,0,0,.7);
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.8);
   }
   .route-card-top{
     display:flex; justify-content:space-between; align-items:center;
     font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
     color:var(--clara-60); padding-bottom:1rem; border-bottom:1px dashed var(--linha-esc);
   }
-  .route-live{ display:inline-flex; align-items:center; gap:.45em; color:var(--mare); }
-  .route-live .dot{ width:8px; height:8px; border-radius:50%; background:var(--mare); animation:pulse 1.8s infinite; }
+  .route-live{ display:inline-flex; align-items:center; gap:.45em; color:var(--ambar); }
+  .route-live .dot{ width:8px; height:8px; border-radius:50%; background:var(--ambar); animation:pulse 1.8s infinite; }
   .route-legs{ display:flex; align-items:stretch; gap:.75rem; padding:1.35rem 0 .4rem; }
   .leg{ flex:1; }
   .leg-label{ font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; color:var(--clara-60); text-transform:uppercase; }
   .leg-name{ font-family:var(--display); font-weight:700; font-size:1.15rem; color:var(--clara); margin-top:.15rem; }
   .leg-track{ position:relative; height:24px; margin:.6rem 0; }
   .leg-track .line{ position:absolute; top:50%; left:0; right:0; height:2px; background:var(--linha-esc); }
-  .leg-track .fill{ position:absolute; top:50%; left:0; width:60%; height:2px; background:linear-gradient(90deg,var(--sinal),var(--mare)); }
-  .leg-track .node{ position:absolute; top:50%; width:12px; height:12px; border-radius:50%; transform:translate(-50%,-50%); border:2px solid var(--asfalto-2); }
-  .leg-track .node.a{ left:0; background:var(--sinal); }
-  .leg-track .node.b{ right:0; left:auto; transform:translate(50%,-50%); background:var(--mare); }
+  .leg-track .fill{ position:absolute; top:50%; left:0; width:60%; height:2px; background:linear-gradient(90deg,var(--ambar),var(--cobalto)); }
+  .leg-track .node{ position:absolute; top:50%; width:12px; height:12px; border-radius:50%; transform:translate(-50%,-50%); border:2px solid var(--preto-2); }
+  .leg-track .node.a{ left:0; background:var(--ambar); }
+  .leg-track .node.b{ right:0; left:auto; transform:translate(50%,-50%); background:var(--cobalto); }
   .route-windows{
     margin-top:1rem; padding-top:1rem; border-top:1px dashed var(--linha-esc);
     display:flex; flex-direction:column; gap:.5rem;
@@ -203,49 +183,53 @@
   .win-row .dir{ color:var(--clara-60); letter-spacing:.06em; }
   .win-row .times{ color:var(--clara); font-weight:600; }
 
-  @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(22,167,156,.5);} 50%{ box-shadow:0 0 0 7px rgba(22,167,156,0);} }
+  @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(255,176,32,.5);} 50%{ box-shadow:0 0 0 7px rgba(255,176,32,0);} }
 
   /* ============================================================
-     SECOES GENERICAS
+     FAIXA DE PROVA — cobalto (full width)
+     ============================================================ */
+  .trustbar{ background:var(--cobalto); color:#fff; }
+  .trustbar-inner{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:.6rem 2rem;
+    padding-block:1rem; font-family:var(--mono); font-size:.82rem; letter-spacing:.04em;
+  }
+  .trustbar-inner span{ display:inline-flex; align-items:center; gap:.55em; }
+  .trustbar-inner .mk{ width:7px; height:7px; border-radius:50%; background:var(--ambar); display:inline-block; }
+
+  /* ============================================================
+     SEÇÕES GENÉRICAS
      ============================================================ */
   .section{ padding-block:var(--sec-y); }
   .section-light{ background:var(--branco); }
-  .section-bruma{ background:var(--bruma); }
-  .section-dark{ background:var(--asfalto); color:var(--clara); }
+  .section-nevoa{ background:var(--nevoa); }
+  .section-dark{ background:var(--preto); color:var(--clara); }
   .section-dark h2, .section-dark h3{ color:var(--clara); }
 
-  .sec-head{ max-width:46ch; margin-bottom:clamp(2rem,4vw,3rem); }
-  .sec-head h2{ font-size:clamp(2rem, 1.6rem + 2.2vw, 3.1rem); margin-top:.7rem; text-transform:uppercase; }
-  .section-dark .sec-head .eyebrow{ color:var(--clara-60); }
-  .sec-head p{ margin-top:1rem; color:var(--tinta-70); font-size:1.08rem; }
+  .sec-head{ max-width:48ch; margin-bottom:clamp(2rem,4vw,3rem); }
+  .sec-head h2{ font-size:clamp(2rem, 1.6rem + 2.2vw, 3.1rem); margin-top:.8rem; text-transform:uppercase; color:var(--cobalto-esc); }
+  .section-dark .sec-head h2{ color:var(--clara); }
+  .sec-head p{ margin-top:1rem; color:var(--tinta-60); font-size:1.08rem; }
   .section-dark .sec-head p{ color:var(--clara-60); }
 
   /* ---- PROVA (o trecho chato, resolvido) ---- */
   .proof-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
   .proof{
     background:var(--branco); border:1px solid var(--linha-cl); border-radius:var(--radius);
-    padding:1.8rem 1.6rem; position:relative;
+    padding:1.8rem 1.6rem;
   }
   .proof .ic{ font-size:1.7rem; line-height:1; }
-  .proof h3{ font-size:1.4rem; margin:.9rem 0 .5rem; }
-  .proof p{ color:var(--tinta-70); font-size:.98rem; }
+  .proof h3{ font-size:1.4rem; margin:.9rem 0 .5rem; color:var(--cobalto-esc); }
+  .proof p{ color:var(--tinta-60); font-size:.98rem; }
 
   /* ============================================================
      A ROTA — assinatura (timeline que se desenha)
      ============================================================ */
-  .rota{ position:relative; }
   .rota-list{ position:relative; margin-top:1rem; }
-  /* trilho vertical */
-  .rota-list::before{
-    content:""; position:absolute; left:19px; top:8px; bottom:8px; width:2px;
-    background:var(--linha-esc);
-  }
-  /* progresso do trilho (preenche no scroll) */
+  .rota-list::before{ content:""; position:absolute; left:19px; top:8px; bottom:8px; width:2px; background:var(--linha-esc); }
   .rota-fill{
     position:absolute; left:19px; top:8px; width:2px; height:0;
-    background:linear-gradient(180deg,var(--sinal),var(--mare));
-    transition:height 1.1s cubic-bezier(.22,1,.36,1);
-    z-index:1;
+    background:linear-gradient(180deg,var(--ambar),var(--cobalto));
+    transition:height 1.1s cubic-bezier(.22,1,.36,1); z-index:1;
   }
   .stop{
     position:relative; display:grid; grid-template-columns:40px 1fr; gap:1.4rem;
@@ -255,87 +239,114 @@
   .stop.in{ opacity:1; transform:none; }
   .stop-node{
     position:relative; z-index:2; width:40px; height:40px; border-radius:50%;
-    background:var(--asfalto-2); border:2px solid var(--linha-esc);
-    display:grid; place-items:center;
+    background:var(--preto-2); border:2px solid var(--linha-esc); display:grid; place-items:center;
     font-family:var(--mono); font-size:.82rem; font-weight:600; color:var(--clara-60);
     transition:border-color .3s ease, color .3s ease, background .3s ease;
   }
-  .stop.in .stop-node{ border-color:var(--sinal); color:var(--sinal); }
+  .stop.in .stop-node{ border-color:var(--ambar); color:var(--ambar); }
   .stop-body h3{ font-size:1.5rem; }
   .stop-body p{ color:var(--clara-60); margin-top:.35rem; max-width:52ch; }
-  /* waypoint final — o climax em turquesa */
-  .stop.final .stop-node{ background:var(--mare); border-color:var(--mare); color:var(--asfalto); }
-  .stop.final .stop-body h3{ color:var(--mare); }
+  .stop.final .stop-node{ background:var(--cobalto); border-color:var(--cobalto); color:#fff; }
+  .stop.final .stop-body h3{ color:#6ea8ff; }
   .stop.final .stop-body p{ color:var(--clara); }
 
   /* ============================================================
-     SERVICOS
+     SERVIÇOS
      ============================================================ */
   .serv-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
   .serv{
     border:1px solid var(--linha-cl); border-radius:var(--radius); padding:1.7rem;
-    display:flex; flex-direction:column; background:var(--branco);
+    display:flex; flex-direction:column; background:var(--nevoa);
     transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   }
-  .serv:hover{ transform:translateY(-4px); box-shadow:0 20px 40px -24px rgba(21,25,29,.35); border-color:transparent; }
-  .serv.featured{ border-color:var(--mare); box-shadow:0 0 0 1px var(--mare) inset; }
+  .serv:hover{ transform:translateY(-4px); box-shadow:0 20px 40px -24px rgba(0,0,0,.3); }
+  .serv.featured{ background:var(--preto); color:var(--clara); border-color:var(--preto); }
   .serv-tag{
     font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
-    color:var(--mare-ink); background:var(--mint); padding:.3em .7em; border-radius:99px; align-self:flex-start;
+    color:var(--cobalto-esc); background:var(--cobalto-tint); padding:.3em .7em; border-radius:99px; align-self:flex-start;
   }
-  .serv h3{ font-size:1.6rem; margin:.9rem 0 .2rem; }
-  .serv .cap{ font-family:var(--mono); font-size:.8rem; color:var(--tinta-70); }
+  .serv.featured .serv-tag{ color:var(--ambar-ink); background:var(--ambar); }
+  .serv h3{ font-size:1.6rem; margin:.9rem 0 .2rem; color:var(--cobalto-esc); }
+  .serv.featured h3{ color:var(--clara); }
+  .serv .cap{ font-family:var(--mono); font-size:.8rem; color:var(--tinta-60); }
+  .serv.featured .cap{ color:var(--clara-60); }
   .serv ul{ list-style:none; margin:1.1rem 0 1.4rem; padding:0; display:flex; flex-direction:column; gap:.55rem; }
   .serv li{ position:relative; padding-left:1.5rem; font-size:.96rem; color:var(--tinta); }
-  .serv li::before{ content:"→"; position:absolute; left:0; color:var(--mare); font-weight:700; }
-  .serv .price{ margin-top:auto; font-family:var(--mono); font-size:.85rem; color:var(--tinta-70); }
-  .serv .price b{ font-family:var(--display); font-size:1.4rem; color:var(--tinta); font-weight:800; display:block; letter-spacing:.01em; }
+  .serv.featured li{ color:var(--clara); }
+  .serv li::before{ content:"→"; position:absolute; left:0; color:var(--cobalto); font-weight:700; }
+  .serv.featured li::before{ color:var(--ambar); }
+  .serv .price{ margin-top:auto; font-family:var(--mono); font-size:.82rem; color:var(--tinta-60); }
+  .serv.featured .price{ color:var(--clara-60); }
+  .serv .price b{ font-family:var(--display); font-size:2rem; color:var(--tinta); font-weight:800; display:block; letter-spacing:.01em; line-height:1.1; }
+  .serv.featured .price b{ color:var(--clara); }
+  .serv .price small{ font-size:.78rem; }
   .serv .btn{ margin-top:1.1rem; justify-content:center; }
   .routes-note{
-    margin-top:1.6rem; font-family:var(--mono); font-size:.82rem; color:var(--tinta-70);
+    margin-top:1.6rem; font-family:var(--mono); font-size:.82rem; color:var(--tinta-60);
     display:flex; flex-wrap:wrap; gap:.5rem .9rem; align-items:center;
   }
   .chip{ border:1px solid var(--linha-cl); border-radius:99px; padding:.35em .8em; }
 
   /* ============================================================
+     PONTOS DE EMBARQUE (tabela oficial)
+     ============================================================ */
+  .points-wrap{ border:1px solid var(--linha-cl); border-radius:var(--radius-lg); overflow:hidden; background:var(--branco); }
+  .points-scroll{ overflow-x:auto; }
+  table.points{ width:100%; border-collapse:collapse; font-family:var(--mono); font-size:.84rem; min-width:560px; }
+  table.points thead th{
+    background:var(--cobalto); color:#fff; text-align:left; padding:.85rem 1rem;
+    font-weight:600; letter-spacing:.06em; font-size:.72rem; text-transform:uppercase; white-space:nowrap;
+  }
+  table.points thead th:not(:first-child){ text-align:center; }
+  table.points tbody td{ padding:.7rem 1rem; border-top:1px solid var(--linha-cl); color:var(--tinta); }
+  table.points tbody td:not(:first-child){ text-align:center; color:var(--tinta-60); white-space:nowrap; }
+  table.points tbody tr:nth-child(even){ background:var(--nevoa); }
+  table.points .ponto{ font-family:var(--body); font-weight:500; }
+  table.points .ponto.hi{ color:var(--cobalto-esc); font-weight:600; }
+  .points-foot{
+    padding:1rem 1.2rem; font-family:var(--mono); font-size:.74rem; color:var(--tinta-60);
+    border-top:1px solid var(--linha-cl); display:flex; flex-wrap:wrap; gap:.4rem 1.4rem;
+  }
+  .points-back{
+    margin-top:1.4rem; font-family:var(--mono); font-size:.85rem; color:var(--tinta-60);
+    display:flex; flex-wrap:wrap; gap:.5rem 1.4rem;
+  }
+  .points-back b{ color:var(--cobalto-esc); }
+
+  /* ============================================================
      FROTA
      ============================================================ */
   .fleet-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
-  .veh{
-    background:var(--branco); border:1px solid var(--linha-cl); border-radius:var(--radius); overflow:hidden;
-    display:flex; flex-direction:column;
-  }
+  .veh{ background:var(--branco); border:1px solid var(--linha-cl); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; }
   .veh-img{
-    aspect-ratio:4/3; background:
-      repeating-linear-gradient(45deg, #E7ECEA 0 12px, #EDF1EF 12px 24px);
-    display:grid; place-items:center; color:var(--tinta-70);
+    aspect-ratio:4/3; background:repeating-linear-gradient(45deg, #E4E9EE 0 12px, #EDF1F4 12px 24px);
+    display:grid; place-items:center; color:var(--aco-esc);
     font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; text-align:center;
   }
   .veh-body{ padding:1.2rem 1.3rem 1.5rem; }
-  .veh-code{ font-family:var(--mono); font-size:.7rem; color:var(--tinta-70); letter-spacing:.08em; }
-  .veh h3{ font-size:1.35rem; margin:.25rem 0 .5rem; }
+  .veh-code{ font-family:var(--mono); font-size:.7rem; color:var(--tinta-60); letter-spacing:.08em; }
+  .veh h3{ font-size:1.35rem; margin:.25rem 0 .5rem; color:var(--cobalto-esc); }
   .veh .pax{
     display:inline-flex; align-items:center; gap:.4em; font-family:var(--mono); font-size:.85rem;
-    color:var(--mare-ink); background:var(--mint); padding:.25em .65em; border-radius:99px;
+    color:var(--cobalto-esc); background:var(--cobalto-tint); padding:.25em .65em; border-radius:99px;
   }
 
   /* ============================================================
-     CONFIANCA
+     CONFIANÇA
      ============================================================ */
   .trust-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem 1.2rem; }
-  .trust-item{ }
   .trust-item .ic{ font-size:1.5rem; }
-  .trust-item h3{ font-size:1.2rem; margin:.6rem 0 .3rem; }
-  .trust-item p{ color:var(--tinta-70); font-size:.94rem; }
+  .trust-item h3{ font-size:1.2rem; margin:.6rem 0 .3rem; color:var(--cobalto-esc); }
+  .trust-item p{ color:var(--tinta-60); font-size:.94rem; }
 
   /* ============================================================
-     HORARIOS (timetable mono) + FAQ  — sobre asfalto
+     HORÁRIOS + FAQ (sobre preto)
      ============================================================ */
   .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,4rem); align-items:start; }
   .timetable{ border:1px solid var(--linha-esc); border-radius:var(--radius-lg); overflow:hidden; }
   .tt-head{
-    background:var(--asfalto-2); padding:1rem 1.3rem; font-family:var(--mono);
-    font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--mare);
+    background:var(--preto-2); padding:1rem 1.3rem; font-family:var(--mono);
+    font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ambar);
     display:flex; align-items:center; gap:.6em; border-bottom:1px solid var(--linha-esc);
   }
   .tt-row{
@@ -345,36 +356,31 @@
   .tt-row:last-child{ border-bottom:0; }
   .tt-row .dir{ color:var(--clara-60); font-size:.82rem; letter-spacing:.05em; }
   .tt-row .slots{ display:flex; gap:.5rem; flex-wrap:wrap; justify-content:flex-end; }
-  .tt-row .slot{ color:var(--clara); font-weight:600; background:rgba(255,255,255,.05); border-radius:6px; padding:.2em .6em; font-size:.86rem; }
+  .tt-row .slot{ color:var(--clara); font-weight:600; background:rgba(255,255,255,.06); border-radius:6px; padding:.2em .6em; font-size:.86rem; }
   .tt-foot{ padding:.9rem 1.3rem; font-family:var(--mono); font-size:.72rem; color:var(--clara-60); }
 
-  .faq-item{ border-bottom:1px solid var(--linha-esc); }
+  details.faq-item{ border-bottom:1px solid var(--linha-esc); }
   .faq-q{
     width:100%; text-align:left; background:none; border:0; cursor:pointer; color:var(--clara);
     font-family:var(--display); font-weight:700; font-size:1.2rem; letter-spacing:.01em;
-    padding:1.1rem 2.2rem 1.1rem 0; position:relative;
+    padding:1.1rem 2.2rem 1.1rem 0; position:relative; list-style:none;
   }
-  .faq-q::after{ content:"+"; position:absolute; right:.2rem; top:50%; transform:translateY(-50%); color:var(--sinal); font-size:1.5rem; transition:transform .2s ease; }
-  .faq-item[open] .faq-q::after{ transform:translateY(-50%) rotate(45deg); }
+  .faq-q::-webkit-details-marker{ display:none; }
+  .faq-q::after{ content:"+"; position:absolute; right:.2rem; top:50%; transform:translateY(-50%); color:var(--ambar); font-size:1.5rem; transition:transform .2s ease; }
+  details.faq-item[open] .faq-q::after{ transform:translateY(-50%) rotate(45deg); }
   .faq-a{ color:var(--clara-60); padding:0 0 1.2rem; max-width:56ch; font-size:.98rem; }
-  details.faq-item summary{ list-style:none; }
-  details.faq-item summary::-webkit-details-marker{ display:none; }
 
   /* ============================================================
-     CTA FINAL + FOOTER
+     CTA FINAL (faixa aço) + FOOTER (preto)
      ============================================================ */
-  .cta{
-    background:linear-gradient(180deg, var(--asfalto), #10141A);
-    border-top:1px solid var(--linha-esc); text-align:center;
-  }
-  .cta h2{ font-size:clamp(2.1rem, 1.6rem + 3vw, 3.6rem); color:var(--clara); text-transform:uppercase; max-width:18ch; margin-inline:auto; }
-  .cta .hl{ color:var(--sinal); }
-  .cta p{ color:var(--clara-60); margin:1.1rem auto 0; max-width:44ch; }
+  .cta{ background:var(--aco); text-align:center; }
+  .cta h2{ font-size:clamp(2.1rem, 1.6rem + 3vw, 3.6rem); color:var(--preto); text-transform:uppercase; max-width:18ch; margin-inline:auto; }
+  .cta p{ color:#1c2228; margin:1.1rem auto 0; max-width:46ch; }
   .cta .actions{ margin-top:2rem; display:flex; justify-content:center; flex-wrap:wrap; gap:.9rem; }
 
-  .footer{ background:#0F1317; color:var(--clara-60); padding-block:3rem 2.5rem; border-top:1px solid var(--linha-esc); }
+  .footer{ background:var(--preto); color:var(--clara-60); padding-block:3rem 2.5rem; border-top:1px solid var(--linha-esc); }
   .footer-top{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem; }
-  .footer .brand-name{ margin-bottom:.6rem; }
+  .footer .brand-name{ margin-bottom:.6rem; display:block; }
   .footer-tag{ max-width:30ch; font-size:.9rem; }
   .footer-cols{ display:flex; gap:3rem; flex-wrap:wrap; }
   .footer-col h4{ font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--clara); margin:0 0 .8rem; }
@@ -385,7 +391,7 @@
     display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem;
     font-family:var(--mono); font-size:.72rem; letter-spacing:.04em;
   }
-  .todo{ color:var(--sinal); font-family:var(--mono); font-size:.72rem; }
+  .todo{ color:var(--ambar); font-family:var(--mono); font-size:.72rem; }
 
   /* ============================================================
      RESPONSIVO
@@ -399,9 +405,9 @@
   }
   @media (max-width: 720px){
     .nav-links{
-      position:fixed; inset:68px 0 auto 0; flex-direction:column; align-items:flex-start; gap:0;
-      background:var(--asfalto); border-bottom:1px solid var(--linha-esc); padding:.5rem var(--pad) 1.2rem;
-      transform:translateY(-120%); transition:transform .25s ease; z-index:40;
+      position:fixed; inset:66px 0 auto 0; flex-direction:column; align-items:flex-start; gap:0;
+      background:var(--preto); border-bottom:1px solid var(--linha-esc); padding:.5rem var(--pad) 1.2rem;
+      transform:translateY(-130%); transition:transform .25s ease; z-index:40;
     }
     .nav-links.open{ transform:none; }
     .nav-links a{ padding:.9rem 0; width:100%; border-bottom:1px solid var(--linha-esc); font-size:1rem; }
@@ -414,7 +420,6 @@
     .route-legs{ flex-direction:column; gap:1.1rem; }
   }
 
-  /* Acessibilidade — respeitar reduced motion */
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
     *, *::before, *::after{ animation:none !important; transition:none !important; }
@@ -429,17 +434,17 @@
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="#topo" aria-label="Ilha Go — início">
-      <span class="brand-mark">GO</span>
+      <span class="brand-badge" aria-hidden="true">🚙</span>
       <span class="brand-name">Ilha&nbsp;Go</span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
+      <a href="#servicos">Transfers</a>
+      <a href="#pontos">Pontos</a>
       <a href="#como-funciona">A rota</a>
-      <a href="#servicos">Serviços</a>
       <a href="#frota">Frota</a>
-      <a href="#horarios">Horários</a>
       <a href="#faq">Dúvidas</a>
     </nav>
-    <!-- WhatsApp: numero A DEFINIR (ver playbook, secao 17) -->
+    <!-- WhatsApp: numero A DEFINIR (playbook secao 17) -->
     <a class="btn btn-primary nav-cta" href="https://wa.me/55XXXXXXXXXXX?text=Oi!%20Quero%20reservar%20um%20transfer%20com%20a%20Ilha%20Go." target="_blank" rel="noopener">Reservar</a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
   </div>
@@ -449,66 +454,71 @@
 <section class="hero" id="topo">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Transfer Rio ↔ Ilha Grande</span>
-      <h1>A gente cuida da <span class="hl">estrada</span>. Você já chega de férias.</h1>
+      <span class="eyebrow">Transfer Rio ⇄ Ilha Grande</span>
+      <h1 style="margin-top:1.2rem">Do aeroporto ao cais, <span class="soft">no horário certo.</span></h1>
       <p class="hero-sub">
-        Transfer porta a porta do Rio até o cais de Mangaratiba ou Conceição de Jacareí —
-        no horário certo pra sua lancha. Sem dirigir, sem procurar estacionamento, sem carregar mala.
+        Transfer porta a porta do Rio até a Vila do Abraão — terrestre + travessia num serviço só.
+        <b>A lancha espera a nossa van</b>, então você não perde o barco. Sem dirigir, sem estacionamento, sem carregar mala.
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://wa.me/55XXXXXXXXXXX?text=Oi!%20Quero%20reservar%20um%20transfer%20com%20a%20Ilha%20Go." target="_blank" rel="noopener">
           Reservar meu transfer
         </a>
-        <a class="btn btn-ghost" href="#horarios">Ver horários</a>
-      </div>
-      <div class="hero-trust">
-        <span><b>●</b> Monitorado por GPS</span>
-        <span><b>●</b> A lancha espera a van</span>
-        <span><b>●</b> Atendimento 7h–22h</span>
+        <a class="btn btn-ghost" href="#pontos">Ver pontos e horários</a>
       </div>
     </div>
 
-    <!-- Cartao ROTA: a assinatura em miniatura -->
+    <!-- Cartão ROTA -->
     <aside class="route-card" aria-label="Trecho da rota e janelas de horário">
       <div class="route-card-top">
-        <span>Trecho terrestre</span>
+        <span>Trecho porta a porta</span>
         <span class="route-live"><span class="dot"></span> ao vivo no dia</span>
       </div>
       <div class="route-legs">
         <div class="leg">
           <div class="leg-label">Origem</div>
-          <div class="leg-name">Rio de Janeiro</div>
+          <div class="leg-name">Rio</div>
           <div class="leg-label" style="opacity:.7">Aeroporto · hotel</div>
         </div>
         <div class="leg" style="flex:1.3">
-          <div class="leg-label">Estrada monitorada</div>
+          <div class="leg-label">Terra + mar</div>
           <div class="leg-track" aria-hidden="true">
             <span class="line"></span><span class="fill"></span>
             <span class="node a"></span><span class="node b"></span>
           </div>
-          <div class="leg-label" style="text-align:center">Rio–Santos</div>
+          <div class="leg-label" style="text-align:center">Rio–Santos · Flex Boat</div>
         </div>
         <div class="leg" style="text-align:right">
           <div class="leg-label">Destino</div>
-          <div class="leg-name">Cais 🚤</div>
-          <div class="leg-label" style="opacity:.7">Mangaratiba · C. Jacareí</div>
+          <div class="leg-name">Vila do Abraão 🚤</div>
+          <div class="leg-label" style="opacity:.7">Ilha Grande</div>
         </div>
       </div>
       <div class="route-windows">
-        <div class="win-row"><span class="dir">Rio → Ilha</span><span class="times">05–07 · 10–13 · 13–15h30</span></div>
-        <div class="win-row"><span class="dir">Ilha → Rio</span><span class="times">10h · 14h · 17h15</span></div>
+        <div class="win-row"><span class="dir">Saídas Rio → Ilha</span><span class="times">3 por dia</span></div>
+        <div class="win-row"><span class="dir">Volta Ilha → Rio</span><span class="times">10h · 14h · 17h15</span></div>
+        <div class="win-row"><span class="dir">Tempo total</span><span class="times">~3h30</span></div>
       </div>
     </aside>
   </div>
 </section>
 
+<!-- ==================== FAIXA DE PROVA (cobalto) ==================== -->
+<div class="trustbar">
+  <div class="wrap trustbar-inner">
+    <span><span class="mk"></span> Pontualidade britânica</span>
+    <span><span class="mk"></span> Frota própria + rastreada</span>
+    <span><span class="mk"></span> Integrado à lancha do grupo</span>
+  </div>
+</div>
+
 <!-- ==================== PROVA / PROMESSA ==================== -->
-<section class="section section-bruma" id="promessa">
+<section class="section section-nevoa" id="promessa">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Por que Ilha Go</span>
+      <span class="eyebrow on-light">Por que Ilha Go</span>
       <h2>O trecho chato da viagem, resolvido.</h2>
-      <p>Você não veio dirigir na Rio–Santos. Veio descansar. A gente assume a parte de trás do volante pra você só se preocupar com a próxima praia.</p>
+      <p>Você não veio dirigir na Rio–Santos. Veio descansar. A gente assume a parte de trás do volante — e a conexão com o barco — pra você só pensar na próxima praia.</p>
     </div>
     <div class="proof-grid">
       <article class="proof">
@@ -522,16 +532,134 @@
         <p>Chegou no cais, desceu, embarcou. Não precisa deixar carro em Mangaratiba nem pensar onde estacionar por dias.</p>
       </article>
       <article class="proof">
-        <div class="ic">🧳</div>
-        <h3>Sem carregar mala</h3>
-        <p>Porta a porta, com espaço garantido pra 1 mala + 1 item pessoal por pessoa. Você anda leve do hotel até o barco.</p>
+        <div class="ic">⛴️</div>
+        <h3>Sem perder o barco</h3>
+        <p>Terrestre e travessia num pacote só. A embarcação do grupo espera a nossa van — sua conexão terra–mar é garantida.</p>
       </article>
     </div>
   </div>
 </section>
 
+<!-- ==================== SERVIÇOS ==================== -->
+<section class="section section-light" id="servicos">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow on-light">Transfers</span>
+      <h2>Do compartilhado ao blindado.</h2>
+      <p>Escolha pelo jeito que você quer viajar. Todos incluem ar-condicionado, motorista profissional e seguro de passageiros.</p>
+    </div>
+
+    <div class="serv-grid">
+      <article class="serv featured">
+        <span class="serv-tag">Mais vendido</span>
+        <h3>Compartilhado</h3>
+        <span class="cap">Rio ⇄ Vila do Abraão · terrestre + travessia</span>
+        <ul>
+          <li>3 saídas por dia, quórum a partir de 4 pax</li>
+          <li>Travessia em Flex Boat (~30 min) inclusa</li>
+          <li>Melhor preço por pessoa</li>
+        </ul>
+        <div class="price">
+          por pessoa · trecho
+          <b>R$ 200</b>
+          <small>ida e volta R$ 400</small>
+        </div>
+        <a class="btn btn-primary" href="https://wa.me/55XXXXXXXXXXX?text=Quero%20o%20transfer%20compartilhado%20Rio%20x%20Ilha%20Grande." target="_blank" rel="noopener">Quero compartilhado</a>
+      </article>
+
+      <article class="serv">
+        <span class="serv-tag">Só o seu grupo</span>
+        <h3>Privativo</h3>
+        <span class="cap">Horário livre · porta a porta</span>
+        <ul>
+          <li>Você define o horário de saída</li>
+          <li>Direto, sem paradas de outros passageiros</li>
+          <li>Spin (até 6 pax) ou van maior</li>
+        </ul>
+        <div class="price">
+          a partir de
+          <b class="todo">R$ [A DEFINIR]</b>
+          <small>por trecho · sob consulta</small>
+        </div>
+        <a class="btn btn-ghost-dark" href="https://wa.me/55XXXXXXXXXXX?text=Quero%20o%20transfer%20privativo%20Rio%20x%20Ilha%20Grande." target="_blank" rel="noopener">Pedir orçamento</a>
+      </article>
+
+      <article class="serv">
+        <span class="serv-tag">Alto padrão</span>
+        <h3>Executivo Blindado</h3>
+        <span class="cap">Segurança máxima · frota própria</span>
+        <ul>
+          <li>Todas as rotas: Ilha Grande, Angra e City Tour</li>
+          <li>Conforto e discrição executiva</li>
+          <li>Modelo e capacidade [A DEFINIR]</li>
+        </ul>
+        <div class="price">
+          sob consulta
+          <b class="todo">R$ [A DEFINIR]</b>
+          <small>por trecho</small>
+        </div>
+        <a class="btn btn-ghost-dark" href="https://wa.me/55XXXXXXXXXXX?text=Quero%20o%20transfer%20executivo%20blindado." target="_blank" rel="noopener">Falar sobre blindado</a>
+      </article>
+    </div>
+
+    <div class="routes-note">
+      <span>Também operamos:</span>
+      <span class="chip">Rio × Mangaratiba</span>
+      <span class="chip">Rio × Conceição de Jacareí</span>
+      <span class="chip">Só terrestre (sem travessia)</span>
+      <span class="chip">City Tour Rio</span>
+      <span class="chip">Rio × Angra dos Reis</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PONTOS DE EMBARQUE (tabela oficial) ==================== -->
+<section class="section section-nevoa" id="pontos">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow on-light">Onde te buscamos</span>
+      <h2>Pontos de embarque no Rio.</h2>
+      <p>Buscamos você porta a porta em toda a cidade — do Galeão à Zona Sul e à Av. Brasil. São 3 saídas por dia; o motorista confirma o horário exato na véspera.</p>
+    </div>
+
+    <div class="points-wrap">
+      <div class="points-scroll">
+        <table class="points">
+          <thead>
+            <tr><th>Bairro / Ponto</th><th>1ª saída</th><th>2ª saída</th><th>3ª saída</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="ponto">Gávea / Leblon / Ipanema / J. Botânico</td><td>05:45–06:00</td><td>09:30–09:45</td><td>13:00–13:30</td></tr>
+            <tr><td class="ponto">Copacabana / Arpoador</td><td>05:45–06:00</td><td>09:30–09:45</td><td>13:00–13:30</td></tr>
+            <tr><td class="ponto">Leme / Urca</td><td>05:45–06:00</td><td>09:30–09:45</td><td>13:00–13:30</td></tr>
+            <tr><td class="ponto">Botafogo / Flamengo / Catete / Glória / Laranjeiras / Humaitá</td><td>06:00–06:15</td><td>09:45–10:00</td><td>13:20–13:35</td></tr>
+            <tr><td class="ponto">Santa Teresa / Lapa / Centro</td><td>06:15–06:30</td><td>10:00–10:15</td><td>13:30–13:45</td></tr>
+            <tr><td class="ponto hi">Aeroporto Santos Dumont · SDU</td><td>06:00–06:25</td><td>09:45–10:00</td><td>13:20–13:40</td></tr>
+            <tr><td class="ponto hi">Aeroporto Galeão · GIG</td><td>07:00–07:20</td><td>10:45–11:00</td><td>14:00–14:20</td></tr>
+            <tr><td class="ponto hi">Rodoviária Novo Rio</td><td>06:20–06:35</td><td>10:00–10:15</td><td>13:30–13:45</td></tr>
+            <tr><td class="ponto">Tijuca / Praça da Bandeira</td><td>06:20–06:35</td><td>10:15–10:30</td><td>13:35–13:45</td></tr>
+            <tr><td class="ponto">Av. Brasil — Shopping Jardim Guadalupe</td><td>07:15–07:30</td><td>11:10–11:25</td><td>14:20–14:40</td></tr>
+            <tr><td class="ponto">Av. Brasil 28388 — Realengo</td><td>07:20–07:35</td><td>11:20–11:35</td><td>14:30–14:50</td></tr>
+            <tr><td class="ponto">Av. Brasil 33570 — Campo Grande</td><td>07:20–07:35</td><td>11:30–11:45</td><td>14:50–15:15</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="points-foot">
+        <span>⚠️ Horários estimativos — o motorista ajusta na véspera conforme trânsito.</span>
+        <span>Não vê seu bairro? Chama no WhatsApp.</span>
+      </div>
+    </div>
+
+    <div class="points-back">
+      <span><b>Volta (Ilha → Rio):</b> 10h · 14h · 17h15</span>
+      <span><b>Chegada:</b> esteja no ponto 10 min antes</span>
+      <span><b>Rotas terrestres:</b> Mangaratiba ou Conceição de Jacareí</span>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== A ROTA (assinatura) ==================== -->
-<section class="section section-dark rota" id="como-funciona">
+<section class="section section-dark" id="como-funciona">
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">Como funciona</span>
@@ -549,7 +677,6 @@
           <p>Você fala com o time no WhatsApp, escolhe compartilhado ou privativo e recebe o voucher. Rápido, sem burocracia.</p>
         </div>
       </div>
-
       <div class="stop">
         <div class="stop-node">02</div>
         <div class="stop-body">
@@ -557,15 +684,13 @@
           <p>Um dia antes, o motorista confirma por WhatsApp o horário exato e o ponto de encontro. Você dorme tranquilo.</p>
         </div>
       </div>
-
       <div class="stop">
         <div class="stop-node">03</div>
         <div class="stop-body">
           <h3>Embarque no ponto combinado</h3>
-          <p>Aeroporto, hotel ou endereço na Zona Sul. O carro chega limpo, no horário, com o motorista uniformizado do grupo.</p>
+          <p>Aeroporto, hotel ou endereço na cidade. O carro chega limpo, no horário, com o motorista uniformizado do grupo.</p>
         </div>
       </div>
-
       <div class="stop">
         <div class="stop-node">04</div>
         <div class="stop-body">
@@ -573,222 +698,92 @@
           <p>A operação acompanha a van em tempo real. Se o trânsito complicar na Rio–Santos, a gente ajusta antes de virar problema.</p>
         </div>
       </div>
-
       <div class="stop">
         <div class="stop-node">05</div>
         <div class="stop-body">
           <h3>Chegada ao cais</h3>
-          <p>Mangaratiba ou Conceição de Jacareí, no tempo certo da sua travessia. Você desce a poucos passos do embarque.</p>
+          <p>Mangaratiba ou Conceição de Jacareí, no tempo certo da travessia. Você desce a poucos passos do embarque.</p>
         </div>
       </div>
-
       <div class="stop final">
         <div class="stop-node">06</div>
         <div class="stop-body">
           <h3>A lancha espera a nossa van</h3>
-          <p>Esse é o pulo do gato: a embarcação do grupo aguarda a chegada do transfer. Sua conexão terra–mar é uma coisa só — não duas apostas.</p>
+          <p>Esse é o pulo do gato: a embarcação do grupo aguarda a chegada do transfer. A travessia (~30 min de Flex Boat) até a Vila do Abraão é uma coisa só — não duas apostas.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== SERVICOS ==================== -->
-<section class="section section-light" id="servicos">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Serviços</span>
-      <h2>Do compartilhado ao blindado.</h2>
-      <p>Escolha pelo jeito que você quer viajar. Todos incluem ar-condicionado, motorista profissional e seguro de passageiros.</p>
-    </div>
-
-    <div class="serv-grid">
-      <article class="serv">
-        <span class="serv-tag">Mais econômico</span>
-        <h3>Compartilhado</h3>
-        <span class="cap">Rio × Ilha · ida e volta</span>
-        <ul>
-          <li>Horários fixos, quórum a partir de 4 pax</li>
-          <li>Melhor preço por pessoa</li>
-          <li>Van Jumpy ou Scudo (até 8 pax)</li>
-        </ul>
-        <div class="price">
-          a partir de
-          <b class="todo">R$ [A DEFINIR]</b>
-          por pessoa · trecho
-        </div>
-        <a class="btn btn-ghost-dark" href="https://wa.me/55XXXXXXXXXXX?text=Quero%20o%20transfer%20compartilhado%20Rio%20x%20Ilha." target="_blank" rel="noopener">Quero compartilhado</a>
-      </article>
-
-      <article class="serv featured">
-        <span class="serv-tag">Mais escolhido</span>
-        <h3>Privativo</h3>
-        <span class="cap">Só o seu grupo · horário livre</span>
-        <ul>
-          <li>Você define o horário de saída</li>
-          <li>Direto, sem paradas de outros passageiros</li>
-          <li>Spin (até 6 pax) ou van maior</li>
-        </ul>
-        <div class="price">
-          a partir de
-          <b class="todo">R$ [A DEFINIR]</b>
-          por trecho
-        </div>
-        <a class="btn btn-primary" href="https://wa.me/55XXXXXXXXXXX?text=Quero%20o%20transfer%20privativo%20terrestre." target="_blank" rel="noopener">Quero privativo</a>
-      </article>
-
-      <article class="serv">
-        <span class="serv-tag">Alto padrão</span>
-        <h3>Executivo Blindado</h3>
-        <span class="cap">Segurança máxima · frota própria</span>
-        <ul>
-          <li>Todas as rotas: Ilha Grande, Angra e City Tour</li>
-          <li>Conforto e discrição executiva</li>
-          <li>Modelo e capacidade [A DEFINIR]</li>
-        </ul>
-        <div class="price">
-          sob consulta
-          <b class="todo">R$ [A DEFINIR]</b>
-          por trecho
-        </div>
-        <a class="btn btn-ghost-dark" href="https://wa.me/55XXXXXXXXXXX?text=Quero%20o%20transfer%20executivo%20blindado." target="_blank" rel="noopener">Falar sobre blindado</a>
-      </article>
-    </div>
-
-    <div class="routes-note">
-      <span>Também operamos:</span>
-      <span class="chip">City Tour Rio</span>
-      <span class="chip">Rio × Angra dos Reis</span>
-      <span class="chip">Privativo Rio × Angra</span>
-      <span class="chip">Transporte de encomendas</span>
     </div>
   </div>
 </section>
 
 <!-- ==================== FROTA ==================== -->
-<section class="section section-bruma" id="frota">
+<section class="section section-light" id="frota">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Frota</span>
+      <span class="eyebrow on-light">Frota</span>
       <h2>Veículos limpos, escalados e rastreados.</h2>
       <p>Cheiro de limpeza, checklist antes de cada embarque e rastreador em todos. Fotos reais em breve.</p>
     </div>
     <div class="fleet-grid">
       <article class="veh">
         <div class="veh-img">FOTO<br>A DEFINIR</div>
-        <div class="veh-body">
-          <span class="veh-code">GO-SPIN-01</span>
-          <h3>Chevrolet Spin</h3>
-          <span class="pax">👥 até 6 pax</span>
-        </div>
+        <div class="veh-body"><span class="veh-code">GO-SPIN-01</span><h3>Chevrolet Spin</h3><span class="pax">👥 até 6 pax</span></div>
       </article>
       <article class="veh">
         <div class="veh-img">FOTO<br>A DEFINIR</div>
-        <div class="veh-body">
-          <span class="veh-code">GO-JUMPY-01</span>
-          <h3>Citroën Jumpy</h3>
-          <span class="pax">👥 até 8 pax</span>
-        </div>
+        <div class="veh-body"><span class="veh-code">GO-JUMPY-01</span><h3>Citroën Jumpy</h3><span class="pax">👥 até 8 pax</span></div>
       </article>
       <article class="veh">
         <div class="veh-img">FOTO<br>A DEFINIR</div>
-        <div class="veh-body">
-          <span class="veh-code">GO-SCUDO-01</span>
-          <h3>Fiat Scudo</h3>
-          <span class="pax">👥 até 8 pax</span>
-        </div>
+        <div class="veh-body"><span class="veh-code">GO-SCUDO-01</span><h3>Fiat Scudo</h3><span class="pax">👥 até 8 pax</span></div>
       </article>
       <article class="veh">
         <div class="veh-img">FOTO<br>A DEFINIR</div>
-        <div class="veh-body">
-          <span class="veh-code">GO-EXEC-BLIND-01</span>
-          <h3>Executivo Blindado</h3>
-          <span class="pax">👥 pax A DEFINIR</span>
-        </div>
+        <div class="veh-body"><span class="veh-code">GO-EXEC-BLIND-01</span><h3>Executivo Blindado</h3><span class="pax">👥 pax A DEFINIR</span></div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ==================== CONFIANCA ==================== -->
-<section class="section section-light" id="confianca">
+<!-- ==================== CONFIANÇA ==================== -->
+<section class="section section-nevoa" id="confianca">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Por que confiar</span>
+      <span class="eyebrow on-light">Por que confiar</span>
       <h2>Pontualidade não é sorte. É método.</h2>
     </div>
     <div class="trust-grid">
-      <div class="trust-item">
-        <div class="ic">⏰</div>
-        <h3>Pontualidade britânica</h3>
-        <p>Tolerância zero para atraso no embarque. O horário do barco manda na escala.</p>
-      </div>
-      <div class="trust-item">
-        <div class="ic">🛡️</div>
-        <h3>Seguro de passageiros</h3>
-        <p>Segurança viária inegociável, com seguro incluso em todos os trechos.</p>
-      </div>
-      <div class="trust-item">
-        <div class="ic">📍</div>
-        <h3>Rastreamento em tempo real</h3>
-        <p>Cada veículo com GPS. A operação enxerga a van do início ao cais.</p>
-      </div>
-      <div class="trust-item">
-        <div class="ic">✈️</div>
-        <h3>Suporte a atraso de voo</h3>
-        <p>Voo atrasou? A gente acompanha o status e reorganiza o encontro.</p>
-      </div>
-      <div class="trust-item">
-        <div class="ic">🧽</div>
-        <h3>Limpeza rigorosa</h3>
-        <p>Checklist de limpeza e fluídos antes do primeiro embarque do dia.</p>
-      </div>
-      <div class="trust-item">
-        <div class="ic">🤝</div>
-        <h3>Motorista do grupo</h3>
-        <p>Uniformizado, cordial e treinado na cultura FamILHA — seu primeiro anfitrião.</p>
-      </div>
-      <div class="trust-item">
-        <div class="ic">💬</div>
-        <h3>Atendimento 7h–22h</h3>
-        <p>Segunda a segunda. Confirmação na véspera e suporte durante toda a viagem.</p>
-      </div>
-      <div class="trust-item">
-        <div class="ic">🔗</div>
-        <h3>Conexão com a lancha</h3>
-        <p>Integração direta com a embarcação do grupo. A travessia é coordenada, não improvisada.</p>
-      </div>
+      <div class="trust-item"><div class="ic">⏰</div><h3>Pontualidade britânica</h3><p>Tolerância zero para atraso no embarque. O horário do barco manda na escala.</p></div>
+      <div class="trust-item"><div class="ic">🛡️</div><h3>Seguro de passageiros</h3><p>Segurança viária inegociável, com seguro incluso em todos os trechos.</p></div>
+      <div class="trust-item"><div class="ic">📍</div><h3>Rastreamento em tempo real</h3><p>Cada veículo com GPS. A operação enxerga a van do início ao cais.</p></div>
+      <div class="trust-item"><div class="ic">✈️</div><h3>Suporte a atraso de voo</h3><p>Voo atrasou? A gente acompanha o status e reorganiza o encontro.</p></div>
+      <div class="trust-item"><div class="ic">🧽</div><h3>Limpeza rigorosa</h3><p>Checklist de limpeza e fluídos antes do primeiro embarque do dia.</p></div>
+      <div class="trust-item"><div class="ic">🤝</div><h3>Motorista do grupo</h3><p>Uniformizado, cordial e treinado na cultura FamILHA — seu primeiro anfitrião.</p></div>
+      <div class="trust-item"><div class="ic">⛴️</div><h3>Conexão com a lancha</h3><p>Integração direta com a embarcação do grupo. A travessia é coordenada, não improvisada.</p></div>
+      <div class="trust-item"><div class="ic">💬</div><h3>Atendimento 7h–22h</h3><p>Segunda a segunda. Confirmação na véspera e suporte durante toda a viagem.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ==================== HORARIOS + FAQ ==================== -->
+<!-- ==================== HORÁRIOS + FAQ ==================== -->
 <section class="section section-dark" id="horarios">
   <div class="wrap grid-2">
     <div>
       <div class="sec-head" style="margin-bottom:1.6rem">
-        <span class="eyebrow">Horários fixos</span>
-        <h2>Janelas de saída.</h2>
+        <span class="eyebrow">Horários</span>
+        <h2>Saídas do dia.</h2>
       </div>
       <div class="timetable" aria-label="Janelas de horário do transfer compartilhado">
-        <div class="tt-head">🚐 Transfer compartilhado</div>
+        <div class="tt-head">⛴️ Compartilhado · 3 saídas/dia</div>
         <div class="tt-row">
           <span class="dir">RIO → ILHA</span>
-          <span class="slots">
-            <span class="slot">05h–07h</span>
-            <span class="slot">10h–13h</span>
-            <span class="slot">13h–15h30</span>
-          </span>
+          <span class="slots"><span class="slot">manhã cedo</span><span class="slot">meio da manhã</span><span class="slot">início da tarde</span></span>
         </div>
         <div class="tt-row">
           <span class="dir">ILHA → RIO</span>
-          <span class="slots">
-            <span class="slot">10h</span>
-            <span class="slot">14h</span>
-            <span class="slot">17h15</span>
-          </span>
+          <span class="slots"><span class="slot">10h</span><span class="slot">14h</span><span class="slot">17h15</span></span>
         </div>
-        <div class="tt-foot">Privativo: horário livre, você define a saída · Quórum mínimo compartilhado: 4 pax</div>
+        <div class="tt-foot">Horário exato por bairro na tabela de pontos · Privativo: você define a saída · Quórum mínimo compartilhado: 4 pax</div>
       </div>
     </div>
 
@@ -800,38 +795,38 @@
 
       <details class="faq-item">
         <summary class="faq-q">Quanta bagagem posso levar?</summary>
-        <p class="faq-a">1 mala média ou pequena + 1 item pessoal por passageiro. Bagagem extra sai por R$ 50,00 o trecho — avise na reserva pra garantirmos o espaço.</p>
+        <p class="faq-a">1 mala de até 23 kg + 1 bagagem de mão por passageiro. Vai com mais volume? Avise na reserva pra garantirmos o espaço.</p>
       </details>
       <details class="faq-item">
         <summary class="faq-q">E se meu voo atrasar?</summary>
-        <p class="faq-a">A gente acompanha o status do seu voo (GIG/SDU) e reorganiza o ponto e horário de encontro. É pra isso que confirmamos tudo na véspera e ficamos de olho no dia.</p>
+        <p class="faq-a">A gente acompanha o status do seu voo (GIG/SDU) e reorganiza o ponto e horário de encontro. Por isso o motorista confirma tudo na véspera e fica de olho no dia.</p>
       </details>
       <details class="faq-item">
         <summary class="faq-q">A lancha espera mesmo o transfer?</summary>
-        <p class="faq-a">Sim. Como a operação terrestre e a marítima são do mesmo grupo, a embarcação aguarda a chegada da nossa van. Sua conexão terra–mar deixa de ser um risco.</p>
+        <p class="faq-a">Sim. Como a operação terrestre e a marítima são do mesmo grupo, a embarcação aguarda a chegada da nossa van. A travessia em Flex Boat leva ~30 min até a Vila do Abraão.</p>
       </details>
       <details class="faq-item">
         <summary class="faq-q">O que está incluso?</summary>
-        <p class="faq-a">Ar-condicionado, motorista profissional, seguro de passageiros, rastreamento e espaço de bagagem. Não inclui alimentação no trajeto nem paradas extras no modelo compartilhado.</p>
+        <p class="faq-a">Transporte terrestre Rio → Mangaratiba ou Conceição, travessia marítima em Flex Boat, integração entre os modais, ar-condicionado, motorista profissional e seguro. Não inclui alimentação no trajeto.</p>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">Vocês fazem outras rotas?</summary>
-        <p class="faq-a">Sim: City Tour no Rio, Rio × Angra dos Reis e transfers privativos. Fale com a gente no WhatsApp e montamos o trecho.</p>
+        <summary class="faq-q">Posso remarcar ou cancelar?</summary>
+        <p class="faq-a">Reagendamento até 7 dias antes, sujeito à disponibilidade. Cancelamento com reembolso até 7 dias após a compra, respeitando 48h de antecedência do serviço.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ==================== CTA FINAL ==================== -->
+<!-- ==================== CTA FINAL (faixa aço) ==================== -->
 <section class="section cta">
   <div class="wrap">
-    <h2>Bora deixar a <span class="hl">estrada</span> com a gente?</h2>
-    <p>Manda uma mensagem, conta seu trecho e sua data. A gente cuida do resto até o pé na areia.</p>
+    <h2>Reserve seu transfer.</h2>
+    <p>Manda uma mensagem, conta seu ponto de embarque e sua data. A gente cuida do resto — até o pé na areia da Vila do Abraão.</p>
     <div class="actions">
       <a class="btn btn-primary" href="https://wa.me/55XXXXXXXXXXX?text=Oi!%20Quero%20reservar%20um%20transfer%20com%20a%20Ilha%20Go." target="_blank" rel="noopener">
         Reservar pelo WhatsApp
       </a>
-      <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+      <a class="btn btn-ghost-dark" href="#servicos">Ver transfers</a>
     </div>
   </div>
 </section>
@@ -841,16 +836,16 @@
   <div class="wrap">
     <div class="footer-top">
       <div>
-        <div class="brand-name">Ilha&nbsp;Go</div>
-        <p class="footer-tag">Transfer terrestre Rio ↔ Ilha Grande. O primeiro contato físico da sua viagem pro paraíso.</p>
+        <span class="brand-name">Ilha&nbsp;Go</span>
+        <p class="footer-tag">Transfer Rio ↔ Ilha Grande. O primeiro contato físico da sua viagem pro paraíso.</p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
           <h4>Navegar</h4>
+          <a href="#servicos">Transfers</a>
+          <a href="#pontos">Pontos de embarque</a>
           <a href="#como-funciona">A rota</a>
-          <a href="#servicos">Serviços</a>
           <a href="#frota">Frota</a>
-          <a href="#horarios">Horários</a>
         </div>
         <div class="footer-col">
           <h4>Contato</h4>
@@ -861,14 +856,14 @@
         <div class="footer-col">
           <h4>Grupo Ilha</h4>
           <a href="https://ilhatour.com" target="_blank" rel="noopener">Ilha Tour</a>
-          <span>Vou de Barco</span>
-          <span>Pousada Paraíso</span>
+          <a href="https://voudebarco.com" target="_blank" rel="noopener">Vou de Barco</a>
+          <a href="https://paraisoilhagrande.com.br" target="_blank" rel="noopener">Pousada Paraíso</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span id="ano">2026</span> Ilha Go · Grupo Ilha</span>
-      <span>TEMA "Rota" · v0.1.0 · 2026-07-02</span>
+      <span>© <span id="ano">2026</span> Ilha Go · Rio de Janeiro</span>
+      <span>TEMA "Preto & Cobalto · Aço" · v0.2.0 · 2026-07-02</span>
     </div>
   </div>
 </footer>
@@ -882,7 +877,6 @@
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     toggle.textContent = open ? '✕' : '☰';
   });
-  // fecha o menu ao clicar num link (mobile)
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     links.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
@@ -907,7 +901,6 @@
         if (entry.isIntersecting) {
           entry.target.classList.add('in');
           revealed = Math.max(revealed, stops.indexOf(entry.target) + 1);
-          // preenche o trilho proporcionalmente à parada mais avançada revelada
           fill.style.height = (revealed / stops.length * 100) + '%';
           io.unobserve(entry.target);
         }
