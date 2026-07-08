@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.2.0 · 2026-07-02 -->
+<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.4.0 · 2026-07-08 -->
 <!-- Transfer terrestre + travessia Rio <-> Ilha Grande (Vila do Abraao). -->
 <!-- Dados: TARIFARIO OFICIAL 2026 (Notion, fonte canonica) + pagina Ilha Tour. -->
 <!-- Deploy: static -> GitHub (ilhatour/ilha-go) -> Hostinger auto-deploy em public_html. -->
@@ -319,11 +319,9 @@
      ============================================================ */
   .fleet-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
   .veh{ background:var(--branco); border:1px solid var(--linha-cl); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; }
-  .veh-img{
-    aspect-ratio:4/3; background:repeating-linear-gradient(45deg, #E4E9EE 0 12px, #EDF1F4 12px 24px);
-    display:grid; place-items:center; color:var(--aco-esc);
-    font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; text-align:center;
-  }
+  .veh-img{ aspect-ratio:3/4; overflow:hidden; background:var(--nevoa); }
+  .veh-img img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
+  .veh:hover .veh-img img{ transform:scale(1.04); }
   .veh-body{ padding:1.2rem 1.3rem 1.5rem; }
   .veh-code{ font-family:var(--mono); font-size:.7rem; color:var(--tinta-60); letter-spacing:.08em; }
   .veh h3{ font-size:1.35rem; margin:.25rem 0 .5rem; color:var(--cobalto-esc); }
@@ -592,7 +590,7 @@
         <ul>
           <li>Todas as rotas: Ilha Grande, Angra e City Tour</li>
           <li>Conforto e discrição executiva</li>
-          <li>Modelo e capacidade [A DEFINIR]</li>
+          <li>Range Rover Evoque blindada</li>
         </ul>
         <div class="price">
           sob consulta
@@ -723,24 +721,24 @@
     <div class="sec-head">
       <span class="eyebrow on-light">Frota</span>
       <h2>Veículos limpos, escalados e rastreados.</h2>
-      <p>Cheiro de limpeza, checklist antes de cada embarque e rastreador em todos. Fotos reais em breve.</p>
+      <p>Cheiro de limpeza, checklist antes de cada embarque e rastreador em todos. Do compacto ao blindado executivo.</p>
     </div>
     <div class="fleet-grid">
       <article class="veh">
-        <div class="veh-img">FOTO<br>A DEFINIR</div>
+        <div class="veh-img"><img src="assets/frota/spin.jpg" alt="Chevrolet Spin da Ilha Go com o Pão de Açúcar ao fundo" width="720" height="960" loading="lazy" /></div>
         <div class="veh-body"><span class="veh-code">GO-SPIN-01</span><h3>Chevrolet Spin</h3><span class="pax">👥 até 6 pax</span></div>
       </article>
       <article class="veh">
-        <div class="veh-img">FOTO<br>A DEFINIR</div>
+        <div class="veh-img"><img src="assets/frota/jumpy.jpg" alt="Citroën Jumpy da Ilha Go na orla do Rio" width="720" height="960" loading="lazy" /></div>
         <div class="veh-body"><span class="veh-code">GO-JUMPY-01</span><h3>Citroën Jumpy</h3><span class="pax">👥 até 8 pax</span></div>
       </article>
       <article class="veh">
-        <div class="veh-img">FOTO<br>A DEFINIR</div>
+        <div class="veh-img"><img src="assets/frota/scudo.jpg" alt="Fiat Scudo da Ilha Go com o Pão de Açúcar ao fundo" width="720" height="960" loading="lazy" /></div>
         <div class="veh-body"><span class="veh-code">GO-SCUDO-01</span><h3>Fiat Scudo</h3><span class="pax">👥 até 8 pax</span></div>
       </article>
       <article class="veh">
-        <div class="veh-img">FOTO<br>A DEFINIR</div>
-        <div class="veh-body"><span class="veh-code">GO-EXEC-BLIND-01</span><h3>Executivo Blindado</h3><span class="pax">👥 pax A DEFINIR</span></div>
+        <div class="veh-img"><img src="assets/frota/blindado.jpg" alt="Range Rover Evoque blindado da Ilha Go" width="720" height="960" loading="lazy" /></div>
+        <div class="veh-body"><span class="veh-code">GO-EXEC-BLIND-01</span><h3>Range Rover Evoque</h3><span class="pax">🛡️ Blindado · executivo</span></div>
       </article>
     </div>
   </div>
@@ -864,7 +862,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="ano">2026</span> Ilha Go · Rio de Janeiro</span>
-      <span>TEMA "Preto & Cobalto · Aço" · v0.3.0 · 2026-07-02</span>
+      <span>TEMA "Preto & Cobalto · Aço" · v0.4.0 · 2026-07-08</span>
     </div>
   </div>
 </footer>
