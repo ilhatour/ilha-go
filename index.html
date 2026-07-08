@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.4.0 · 2026-07-08 -->
+<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.5.0 · 2026-07-08 -->
 <!-- Transfer terrestre + travessia Rio <-> Ilha Grande (Vila do Abraao). -->
 <!-- Dados: TARIFARIO OFICIAL 2026 (Notion, fonte canonica) + pagina Ilha Tour. -->
 <!-- Deploy: static -> GitHub (ilhatour/ilha-go) -> Hostinger auto-deploy em public_html. -->
@@ -42,6 +42,7 @@
     --ambar:      #FFB020;  /* ACAO — exclusivo de CTA/emfase de acao */
     --ambar-hi:   #FFC24D;  /* hover do ambar */
     --ambar-ink:  #2E2000;  /* texto sobre o ambar */
+    --whats:      #25D366;  /* verde WhatsApp — botao da plataforma */
     --tinta:      #14181C;  /* texto sobre claro */
     --tinta-60:   #55606B;  /* texto secundario sobre claro */
     --clara:      #F0F3F6;  /* texto sobre preto */
@@ -394,12 +395,48 @@
   .todo{ color:var(--ambar); font-family:var(--mono); font-size:.72rem; }
 
   /* ============================================================
+     COMO RESERVAR (duas formas de comprar)
+     ============================================================ */
+  .buy-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+  .buy-card{ border-radius:var(--radius-lg); padding:clamp(1.6rem,3vw,2.2rem); display:flex; flex-direction:column; border:1px solid var(--linha-cl); }
+  .buy-online{ background:var(--preto); color:var(--clara); border-color:var(--preto); }
+  .buy-whats{ background:var(--nevoa); }
+  .buy-tag{ font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; align-self:flex-start; padding:.35em .8em; border-radius:99px; background:var(--ambar); color:var(--ambar-ink); }
+  .buy-tag.alt{ background:var(--cobalto-tint); color:var(--cobalto-esc); }
+  .buy-card h3{ font-size:clamp(1.5rem,1.2rem+1vw,1.9rem); margin:1rem 0 .5rem; }
+  .buy-online h3{ color:var(--clara); }
+  .buy-whats h3{ color:var(--cobalto-esc); }
+  .buy-card > p{ font-size:.98rem; max-width:44ch; }
+  .buy-online > p{ color:var(--clara-60); }
+  .buy-whats > p{ color:var(--tinta-60); }
+  .buy-online > p b{ color:var(--clara); }
+  .buy-card ul{ list-style:none; margin:1.2rem 0 1.6rem; padding:0; display:flex; flex-direction:column; gap:.6rem; }
+  .buy-card li{ position:relative; padding-left:1.6rem; font-size:.95rem; }
+  .buy-online li{ color:var(--clara); }
+  .buy-whats li{ color:var(--tinta); }
+  .buy-card li::before{ content:"✓"; position:absolute; left:0; font-weight:700; }
+  .buy-online li::before{ color:var(--ambar); }
+  .buy-whats li::before{ color:var(--cobalto); }
+  .buy-card .btn{ margin-top:auto; justify-content:center; }
+  .btn-whats{ background:var(--whats); color:#06351c; }
+  .btn-whats:hover{ transform:translateY(-2px); background:#2ee56f; }
+  .buy-note{ margin-top:.9rem; font-family:var(--mono); font-size:.75rem; text-align:center; }
+  .buy-online .buy-note{ color:var(--clara-60); }
+  .buy-whats .buy-note{ color:var(--tinta-60); }
+  .buy-trust{
+    margin-top:1.7rem; text-align:center; font-family:var(--mono); font-size:.8rem;
+    color:var(--tinta-60); display:flex; flex-wrap:wrap; gap:.4rem .9rem; justify-content:center; align-items:center;
+  }
+  .buy-trust b{ color:var(--cobalto-esc); }
+
+  /* ============================================================
      RESPONSIVO
      ============================================================ */
   @media (max-width: 960px){
     .hero-grid{ grid-template-columns:1fr; }
     .route-card{ order:2; }
     .grid-2{ grid-template-columns:1fr; }
+    .buy-grid{ grid-template-columns:1fr; }
     .fleet-grid{ grid-template-columns:repeat(2,1fr); }
     .trust-grid{ grid-template-columns:repeat(2,1fr); }
   }
@@ -443,8 +480,7 @@
       <a href="#frota">Frota</a>
       <a href="#faq">Dúvidas</a>
     </nav>
-    <!-- WhatsApp: numero A DEFINIR (playbook secao 17) -->
-    <a class="btn btn-primary nav-cta" href="https://wa.me/55XXXXXXXXXXX?text=Oi!%20Quero%20reservar%20um%20transfer%20com%20a%20Ilha%20Go." target="_blank" rel="noopener">Reservar</a>
+    <a class="btn btn-primary nav-cta" href="#reservar">Reservar</a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -460,9 +496,7 @@
         <b>A lancha espera a nossa van</b>, então você não perde o barco. Sem dirigir, sem estacionamento, sem carregar mala.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="https://wa.me/55XXXXXXXXXXX?text=Oi!%20Quero%20reservar%20um%20transfer%20com%20a%20Ilha%20Go." target="_blank" rel="noopener">
-          Reservar meu transfer
-        </a>
+        <a class="btn btn-primary" href="#reservar">Reservar meu transfer</a>
         <a class="btn btn-ghost" href="#pontos">Ver pontos e horários</a>
       </div>
     </div>
@@ -563,7 +597,7 @@
           <b>R$ 200</b>
           <small>ida e volta R$ 400</small>
         </div>
-        <a class="btn btn-primary" href="https://wa.me/55XXXXXXXXXXX?text=Quero%20o%20transfer%20compartilhado%20Rio%20x%20Ilha%20Grande." target="_blank" rel="noopener">Quero compartilhado</a>
+        <a class="btn btn-primary" href="https://ilhatour.com/products/transfer-ilha-grande" target="_blank" rel="noopener">Comprar online →</a>
       </article>
 
       <article class="serv">
@@ -764,6 +798,55 @@
   </div>
 </section>
 
+<!-- ==================== COMO RESERVAR (duas formas) ==================== -->
+<section class="section section-light" id="reservar">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow on-light">Como reservar</span>
+      <h2>Duas formas de garantir sua vaga.</h2>
+      <p>Compre online com pagamento seguro, ou fale direto com a gente. Você escolhe.</p>
+    </div>
+
+    <div class="buy-grid">
+      <!-- OPÇÃO 1 — compra online pela Ilha Tour -->
+      <article class="buy-card buy-online">
+        <span class="buy-tag">Compra online · pagamento seguro</span>
+        <h3>Comprar agora, online</h3>
+        <p>O checkout é pela <b>Ilha Tour</b> — a agência do nosso grupo que intermedeia os pagamentos digitais. Você compra com a segurança de quem já vendeu milhares de transfers.</p>
+        <ul>
+          <li>Cartão blindado pela Cielo 3DS ou Pix</li>
+          <li>Voucher válido por 12 meses — compra agora, viaja quando der</li>
+          <li>7 dias de garantia de arrependimento</li>
+        </ul>
+        <a class="btn btn-primary" href="https://ilhatour.com/products/transfer-ilha-grande" target="_blank" rel="noopener">Comprar pela Ilha Tour →</a>
+        <span class="buy-note">Transfer compartilhado Rio ⇄ Ilha Grande</span>
+      </article>
+
+      <!-- OPÇÃO 2 — WhatsApp Ilha Go -->
+      <article class="buy-card buy-whats">
+        <span class="buy-tag alt">Atendimento humano</span>
+        <h3>Fechar pelo WhatsApp</h3>
+        <p>Prefere conversar? Fale com a equipe Ilha Go: a gente tira dúvidas, monta privativo, blindado ou uma rota sob medida.</p>
+        <ul>
+          <li>Atendimento 7h–22h, todo dia</li>
+          <li>Confirmação do horário na véspera</li>
+          <li>Privativo, blindado e grupos</li>
+        </ul>
+        <a class="btn btn-whats" href="https://wa.me/55XXXXXXXXXXX?text=Oi!%20Quero%20reservar%20um%20transfer%20com%20a%20Ilha%20Go." target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <span class="buy-note">WhatsApp Ilha Go · <span class="todo">[A DEFINIR]</span></span>
+      </article>
+    </div>
+
+    <div class="buy-trust">
+      <span>🔒 Pagamento intermediado pela <b>Ilha Tour</b></span>
+      <span>· CADASTUR</span>
+      <span>· Cielo 3DS</span>
+      <span>· 4,8★ Google</span>
+      <span>· 4,9★ TripAdvisor</span>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== HORÁRIOS + FAQ ==================== -->
 <section class="section section-dark" id="horarios">
   <div class="wrap grid-2">
@@ -820,12 +903,12 @@
 <section class="section cta">
   <div class="wrap">
     <h2>Reserve seu transfer.</h2>
-    <p>Manda uma mensagem, conta seu ponto de embarque e sua data. A gente cuida do resto — até o pé na areia da Vila do Abraão.</p>
+    <p>Compre online agora com pagamento seguro pela Ilha Tour, ou escolha a forma que preferir. A gente cuida do resto — até o pé na areia da Vila do Abraão.</p>
     <div class="actions">
-      <a class="btn btn-primary" href="https://wa.me/55XXXXXXXXXXX?text=Oi!%20Quero%20reservar%20um%20transfer%20com%20a%20Ilha%20Go." target="_blank" rel="noopener">
-        Reservar pelo WhatsApp
+      <a class="btn btn-primary" href="https://ilhatour.com/products/transfer-ilha-grande" target="_blank" rel="noopener">
+        Comprar online
       </a>
-      <a class="btn btn-ghost-dark" href="#servicos">Ver transfers</a>
+      <a class="btn btn-ghost-dark" href="#reservar">Ver formas de reservar</a>
     </div>
   </div>
 </section>
@@ -862,7 +945,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="ano">2026</span> Ilha Go · Rio de Janeiro</span>
-      <span>TEMA "Preto & Cobalto · Aço" · v0.4.0 · 2026-07-08</span>
+      <span>TEMA "Preto & Cobalto · Aço" · v0.5.0 · 2026-07-08</span>
     </div>
   </div>
 </footer>
