@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.10.0 · 2026-07-10 -->
+<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.11.0 · 2026-07-10 -->
 <!-- Transfer terrestre + travessia Rio <-> Ilha Grande (Vila do Abraao). -->
 <!-- Dados: TARIFARIO OFICIAL 2026 (Notion, fonte canonica) + pagina Ilha Tour. -->
 <!-- Deploy: static -> GitHub (ilhatour/ilha-go) -> Hostinger auto-deploy em public_html. -->
@@ -154,20 +154,24 @@
   .hero-sub b{ color:#fff; font-weight:600; }
   .hero-actions{ margin-top:1.8rem; display:flex; flex-wrap:wrap; gap:.9rem; }
 
-  /* Barra de trajeto (glass) — substitui o card alto, melhor no mobile */
-  .trip{
-    margin-top:2.1rem; display:inline-flex; flex-wrap:wrap; align-items:center; gap:.8rem 1.5rem;
-    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16);
+  /* Rota animada (glass) — carro ida-e-volta + lancha indo */
+  .routemap{
+    margin-top:2.1rem; max-width:540px; width:100%;
+    background:rgba(10,12,15,.55); border:1px solid rgba(255,255,255,.16);
     backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
-    border-radius:16px; padding:.85rem 1.25rem;
+    border-radius:16px; padding:1rem 1.25rem 1.1rem;
   }
-  .trip-route{ display:inline-flex; align-items:center; gap:.6rem; font-family:var(--display); font-weight:700; }
-  .trip-pt{ color:#fff; font-size:1.05rem; white-space:nowrap; }
-  .trip-line{ position:relative; width:60px; height:2px; background:linear-gradient(90deg,var(--ambar),var(--cobalto)); border-radius:2px; }
-  .trip-boat{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:1rem; }
-  .trip-facts{ display:inline-flex; flex-wrap:wrap; gap:.5rem .9rem; font-family:var(--mono); font-size:.76rem; color:var(--clara); letter-spacing:.02em; }
-  .trip-facts span{ display:inline-flex; align-items:center; gap:.45em; }
-  .trip-facts span::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--ambar); }
+  .routemap svg{ width:100%; height:auto; display:block; overflow:visible; }
+  .rm-cap{ font-family:var(--mono); font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; fill:var(--aco); }
+  .rm-lbl{ font-family:var(--display); font-weight:700; font-size:13px; fill:#fff; }
+  .rm-lbl.dim{ fill:var(--aco); }
+  .rm-van{ animation:rmVan 3.6s ease-in-out infinite alternate; }
+  .rm-boat{ animation:rmBoat 4.4s ease-in-out infinite; }
+  @keyframes rmVan{ from{ transform:translate(96px,58px);} to{ transform:translate(300px,58px);} }
+  @keyframes rmBoat{ 0%{ transform:translate(348px,58px); opacity:0;} 12%{opacity:1;} 82%{opacity:1;} 100%{ transform:translate(560px,58px); opacity:0;} }
+  .rm-facts{ margin-top:.7rem; padding-top:.7rem; border-top:1px solid rgba(255,255,255,.12); display:flex; flex-wrap:wrap; gap:.4rem .9rem; font-family:var(--mono); font-size:.74rem; color:var(--clara); letter-spacing:.02em; }
+  .rm-facts span{ display:inline-flex; align-items:center; gap:.45em; }
+  .rm-facts span::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--ambar); }
 
   /* ============================================================
      FAIXA DE PROVA — cobalto (full width)
@@ -448,7 +452,7 @@
     /* hero mobile: foto mais centrada, overlay uniforme, mais compacto */
     .hero{ background-position:center 38%; padding-top:2.6rem; padding-bottom:3rem; }
     .hero::before{ background:linear-gradient(180deg, rgba(6,8,10,.62) 0%, rgba(6,8,10,.84) 58%, #000 100%); }
-    .trip{ width:100%; }
+    .routemap{ max-width:none; }
   }
   @media (max-width: 460px){
     .fleet-grid, .trust-grid{ grid-template-columns:1fr; }
@@ -496,13 +500,39 @@
         <a class="btn btn-primary" href="#reservar">Reservar meu transfer</a>
         <a class="btn btn-ghost" href="#pontos">Ver pontos e horários</a>
       </div>
-      <div class="trip" aria-label="Trajeto e informações rápidas">
-        <div class="trip-route">
-          <span class="trip-pt">Rio</span>
-          <span class="trip-line" aria-hidden="true"><span class="trip-boat">🚤</span></span>
-          <span class="trip-pt">Vila do Abraão</span>
-        </div>
-        <div class="trip-facts">
+      <div class="routemap" aria-label="Rota do transfer: carro do Rio até o cais e lancha até a Vila do Abraão">
+        <svg viewBox="0 0 640 106" role="img">
+          <!-- legendas dos trechos -->
+          <text class="rm-cap" x="199" y="30" text-anchor="middle">Terrestre</text>
+          <text class="rm-cap" x="457" y="30" text-anchor="middle">Travessia</text>
+          <!-- estrada -->
+          <line x1="86" y1="58" x2="312" y2="58" stroke="rgba(255,255,255,.22)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="90" y1="58" x2="308" y2="58" stroke="#FFB020" stroke-width="1.6" stroke-dasharray="6 5" stroke-linecap="round"/>
+          <!-- mar -->
+          <path d="M348 58 q13 -7 26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0" fill="none" stroke="#3f7ad6" stroke-width="2.4" stroke-linecap="round"/>
+          <!-- nós -->
+          <circle cx="68" cy="58" r="6" fill="#FFB020"/>
+          <circle cx="330" cy="58" r="6" fill="#ffffff"/>
+          <circle cx="566" cy="58" r="6" fill="#0047AB" stroke="#ffffff" stroke-width="1.5"/>
+          <!-- carro (ida e volta) -->
+          <g class="rm-van" transform="translate(200,58)">
+            <rect x="-15" y="-13" width="30" height="12" rx="3" fill="#FFB020"/>
+            <rect x="-11" y="-10" width="10" height="6" rx="1" fill="#0b0d10" opacity=".55"/>
+            <circle cx="-8" cy="1" r="3" fill="#0b0d10"/>
+            <circle cx="8" cy="1" r="3" fill="#0b0d10"/>
+          </g>
+          <!-- lancha (indo) -->
+          <g class="rm-boat" transform="translate(450,58)">
+            <path d="M -13 0 L 13 0 L 9 7 L -9 7 Z" fill="#EAF0EE"/>
+            <rect x="-6" y="-8" width="12" height="8" rx="1.5" fill="#0047AB"/>
+            <rect x="-3" y="-6" width="5" height="4" fill="#cfe0ff" opacity=".85"/>
+          </g>
+          <!-- rótulos -->
+          <text class="rm-lbl" x="68" y="94" text-anchor="middle">Rio</text>
+          <text class="rm-lbl dim" x="330" y="94" text-anchor="middle">Cais</text>
+          <text class="rm-lbl" x="566" y="94" text-anchor="middle">Vila do Abraão</text>
+        </svg>
+        <div class="rm-facts">
           <span>3 saídas por dia</span>
           <span>~3h30 porta a porta</span>
           <span>a lancha espera a van</span>
@@ -918,7 +948,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="ano">2026</span> Ilha Go · Rio de Janeiro</span>
-      <span>TEMA "Preto & Cobalto · Aço" · v0.10.0 · 2026-07-10</span>
+      <span>TEMA "Preto & Cobalto · Aço" · v0.11.0 · 2026-07-10</span>
     </div>
   </div>
 </footer>
