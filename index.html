@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.8.1 · 2026-07-08 -->
+<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.9.0 · 2026-07-10 -->
 <!-- Transfer terrestre + travessia Rio <-> Ilha Grande (Vila do Abraao). -->
 <!-- Dados: TARIFARIO OFICIAL 2026 (Notion, fonte canonica) + pagina Ilha Tour. -->
 <!-- Deploy: static -> GitHub (ilhatour/ilha-go) -> Hostinger auto-deploy em public_html. -->
@@ -133,59 +133,41 @@
      HERO — preto
      ============================================================ */
   .hero{
-    background:var(--preto); color:var(--clara); position:relative; overflow:hidden;
-    padding-top:clamp(3.5rem,7vw,5.5rem); padding-bottom:clamp(3rem,6vw,4.5rem);
+    position:relative; overflow:hidden; color:var(--clara);
+    background:#000 url("assets/hero-rio.jpg") center 32% / cover no-repeat;
+    padding-top:clamp(3.5rem,7vw,6rem); padding-bottom:clamp(3.5rem,7vw,6rem);
   }
+  /* overlay p/ legibilidade do texto sobre a foto */
   .hero::before{
-    content:""; position:absolute; inset:0; pointer-events:none; opacity:.8;
+    content:""; position:absolute; inset:0; pointer-events:none;
     background:
-      radial-gradient(120% 80% at 88% -20%, rgba(0,71,171,.35), transparent 55%),
-      radial-gradient(80% 60% at 0% 120%, rgba(154,167,178,.10), transparent 60%);
+      linear-gradient(90deg, rgba(6,8,10,.95) 0%, rgba(6,8,10,.80) 42%, rgba(6,8,10,.36) 100%),
+      linear-gradient(to top, #000 0%, rgba(0,0,0,0) 24%);
   }
-  .hero-grid{
-    position:relative; display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(2rem,5vw,4rem); align-items:center;
-  }
-  .hero h1{ font-size:clamp(2.6rem, 2rem + 4vw, 4.75rem); text-transform:uppercase; }
+  .hero-inner{ position:relative; max-width:640px; }
+  .hero h1{ font-size:clamp(2.5rem, 1.9rem + 4vw, 4.6rem); text-transform:uppercase; margin-top:1.1rem; }
   .hero h1 .soft{ color:var(--aco); }
   .hero-sub{
-    margin-top:1.35rem; max-width:36ch; color:var(--clara);
-    font-size:clamp(1.05rem,1rem + .4vw,1.22rem);
+    margin-top:1.25rem; max-width:46ch; color:var(--clara);
+    font-size:clamp(1.05rem,1rem + .35vw,1.2rem); text-shadow:0 1px 24px rgba(0,0,0,.55);
   }
-  .hero-sub b{ color:var(--clara); font-weight:600; }
-  .hero-actions{ margin-top:2rem; display:flex; flex-wrap:wrap; gap:.9rem; }
+  .hero-sub b{ color:#fff; font-weight:600; }
+  .hero-actions{ margin-top:1.8rem; display:flex; flex-wrap:wrap; gap:.9rem; }
 
-  /* Cartão ROTA (assinatura em miniatura) */
-  .route-card{
-    background:var(--preto-2); border:1px solid var(--linha-esc);
-    border-radius:var(--radius-lg); padding:clamp(1.3rem,3vw,1.8rem);
-    box-shadow:0 30px 60px -30px rgba(0,0,0,.8);
+  /* Barra de trajeto (glass) — substitui o card alto, melhor no mobile */
+  .trip{
+    margin-top:2.1rem; display:inline-flex; flex-wrap:wrap; align-items:center; gap:.8rem 1.5rem;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    border-radius:16px; padding:.85rem 1.25rem;
   }
-  .route-card-top{
-    display:flex; justify-content:space-between; align-items:center;
-    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--clara-60); padding-bottom:1rem; border-bottom:1px dashed var(--linha-esc);
-  }
-  .route-live{ display:inline-flex; align-items:center; gap:.45em; color:var(--ambar); }
-  .route-live .dot{ width:8px; height:8px; border-radius:50%; background:var(--ambar); animation:pulse 1.8s infinite; }
-  .route-legs{ display:flex; align-items:stretch; gap:.75rem; padding:1.35rem 0 .4rem; }
-  .leg{ flex:1; }
-  .leg-label{ font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; color:var(--clara-60); text-transform:uppercase; }
-  .leg-name{ font-family:var(--display); font-weight:700; font-size:1.15rem; color:var(--clara); margin-top:.15rem; }
-  .leg-track{ position:relative; height:24px; margin:.6rem 0; }
-  .leg-track .line{ position:absolute; top:50%; left:0; right:0; height:2px; background:var(--linha-esc); }
-  .leg-track .fill{ position:absolute; top:50%; left:0; width:60%; height:2px; background:linear-gradient(90deg,var(--ambar),var(--cobalto)); }
-  .leg-track .node{ position:absolute; top:50%; width:12px; height:12px; border-radius:50%; transform:translate(-50%,-50%); border:2px solid var(--preto-2); }
-  .leg-track .node.a{ left:0; background:var(--ambar); }
-  .leg-track .node.b{ right:0; left:auto; transform:translate(50%,-50%); background:var(--cobalto); }
-  .route-windows{
-    margin-top:1rem; padding-top:1rem; border-top:1px dashed var(--linha-esc);
-    display:flex; flex-direction:column; gap:.5rem;
-  }
-  .win-row{ display:flex; justify-content:space-between; align-items:center; gap:1rem; font-family:var(--mono); font-size:.82rem; }
-  .win-row .dir{ color:var(--clara-60); letter-spacing:.06em; }
-  .win-row .times{ color:var(--clara); font-weight:600; }
-
-  @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(255,176,32,.5);} 50%{ box-shadow:0 0 0 7px rgba(255,176,32,0);} }
+  .trip-route{ display:inline-flex; align-items:center; gap:.6rem; font-family:var(--display); font-weight:700; }
+  .trip-pt{ color:#fff; font-size:1.05rem; white-space:nowrap; }
+  .trip-line{ position:relative; width:60px; height:2px; background:linear-gradient(90deg,var(--ambar),var(--cobalto)); border-radius:2px; }
+  .trip-boat{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:1rem; }
+  .trip-facts{ display:inline-flex; flex-wrap:wrap; gap:.5rem .9rem; font-family:var(--mono); font-size:.76rem; color:var(--clara); letter-spacing:.02em; }
+  .trip-facts span{ display:inline-flex; align-items:center; gap:.45em; }
+  .trip-facts span::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--ambar); }
 
   /* ============================================================
      FAIXA DE PROVA — cobalto (full width)
@@ -431,11 +413,31 @@
   .buy-trust b{ color:var(--cobalto-esc); }
 
   /* ============================================================
+     TAMBÉM NO RIO (cross-sell — card escuro sobre névoa)
+     ============================================================ */
+  .rio-card{
+    background:var(--preto); color:var(--clara); border-radius:var(--radius-lg);
+    padding:clamp(1.8rem,4vw,3rem); display:grid; grid-template-columns:1.1fr 1fr;
+    gap:clamp(1.6rem,4vw,3rem); align-items:center; position:relative; overflow:hidden;
+  }
+  .rio-card::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background:radial-gradient(90% 120% at 100% 0%, rgba(0,71,171,.4), transparent 55%);
+  }
+  .rio-text{ position:relative; }
+  .rio-text h2{ color:var(--clara); font-size:clamp(1.8rem,1.4rem+1.6vw,2.7rem); text-transform:uppercase; margin-top:.8rem; }
+  .rio-text p{ color:var(--clara-60); margin-top:.9rem; max-width:42ch; }
+  .rio-actions{ margin-top:1.6rem; display:flex; flex-wrap:wrap; gap:.8rem; }
+  .rio-list{ position:relative; list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.8rem; }
+  .rio-list li{ background:var(--preto-2); border:1px solid var(--linha-esc); border-radius:12px; padding:1rem 1.2rem; display:flex; flex-direction:column; gap:.2rem; }
+  .rio-list li b{ font-family:var(--display); font-weight:700; font-size:1.15rem; color:var(--clara); }
+  .rio-list li span{ font-size:.9rem; color:var(--clara-60); }
+  @media (max-width:820px){ .rio-card{ grid-template-columns:1fr; } }
+
+  /* ============================================================
      RESPONSIVO
      ============================================================ */
   @media (max-width: 960px){
-    .hero-grid{ grid-template-columns:1fr; }
-    .route-card{ order:2; }
     .grid-2{ grid-template-columns:1fr; }
     .buy-grid{ grid-template-columns:1fr; }
     .fleet-grid{ grid-template-columns:repeat(2,1fr); }
@@ -452,10 +454,13 @@
     .nav-cta{ display:none; }
     .nav-toggle{ display:block; }
     .proof-grid, .serv-grid{ grid-template-columns:1fr; }
+    /* hero mobile: foto mais centrada, overlay uniforme, mais compacto */
+    .hero{ background-position:center 38%; padding-top:2.6rem; padding-bottom:3rem; }
+    .hero::before{ background:linear-gradient(180deg, rgba(6,8,10,.62) 0%, rgba(6,8,10,.84) 58%, #000 100%); }
+    .trip{ width:100%; }
   }
   @media (max-width: 460px){
     .fleet-grid, .trust-grid{ grid-template-columns:1fr; }
-    .route-legs{ flex-direction:column; gap:1.1rem; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -488,10 +493,10 @@
 
 <!-- ============================ HERO ============================ -->
 <section class="hero" id="topo">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
+  <div class="wrap">
+    <div class="hero-inner">
       <span class="eyebrow">Transfer Rio ⇄ Ilha Grande</span>
-      <h1 style="margin-top:1.2rem">Da sua porta no Rio <span class="soft">até a Vila do Abraão.</span></h1>
+      <h1>Da sua porta no Rio <span class="soft">até a Vila do Abraão.</span></h1>
       <p class="hero-sub">
         Transporte terrestre e travessia numa reserva só, com conforto porta a porta.
         <b>Você só embarca — o caminho é com a gente.</b> A lancha espera a nossa van; você não perde o barco.
@@ -500,49 +505,28 @@
         <a class="btn btn-primary" href="#reservar">Reservar meu transfer</a>
         <a class="btn btn-ghost" href="#pontos">Ver pontos e horários</a>
       </div>
+      <div class="trip" aria-label="Trajeto e informações rápidas">
+        <div class="trip-route">
+          <span class="trip-pt">Rio</span>
+          <span class="trip-line" aria-hidden="true"><span class="trip-boat">🚤</span></span>
+          <span class="trip-pt">Vila do Abraão</span>
+        </div>
+        <div class="trip-facts">
+          <span>3 saídas por dia</span>
+          <span>~3h30 porta a porta</span>
+          <span>a lancha espera a van</span>
+        </div>
+      </div>
     </div>
-
-    <!-- Cartão ROTA -->
-    <aside class="route-card" aria-label="Trecho da rota e janelas de horário">
-      <div class="route-card-top">
-        <span>Trecho porta a porta</span>
-        <span class="route-live"><span class="dot"></span> ao vivo no dia</span>
-      </div>
-      <div class="route-legs">
-        <div class="leg">
-          <div class="leg-label">Origem</div>
-          <div class="leg-name">Rio</div>
-          <div class="leg-label" style="opacity:.7">Aeroporto · hotel</div>
-        </div>
-        <div class="leg" style="flex:1.3">
-          <div class="leg-label">Terra + mar</div>
-          <div class="leg-track" aria-hidden="true">
-            <span class="line"></span><span class="fill"></span>
-            <span class="node a"></span><span class="node b"></span>
-          </div>
-          <div class="leg-label" style="text-align:center">Rio–Santos · Flex Boat</div>
-        </div>
-        <div class="leg" style="text-align:right">
-          <div class="leg-label">Destino</div>
-          <div class="leg-name">Vila do Abraão 🚤</div>
-          <div class="leg-label" style="opacity:.7">Ilha Grande</div>
-        </div>
-      </div>
-      <div class="route-windows">
-        <div class="win-row"><span class="dir">Saídas Rio → Ilha</span><span class="times">3 por dia</span></div>
-        <div class="win-row"><span class="dir">Volta Ilha → Rio</span><span class="times">10h · 14h · 17h15</span></div>
-        <div class="win-row"><span class="dir">Tempo total</span><span class="times">~3h30</span></div>
-      </div>
-    </aside>
   </div>
 </section>
 
 <!-- ==================== FAIXA DE PROVA (cobalto) ==================== -->
 <div class="trustbar">
   <div class="wrap trustbar-inner">
-    <span><span class="mk"></span> Pontualidade inegociável</span>
-    <span><span class="mk"></span> Frota própria e rastreada</span>
-    <span><span class="mk"></span> Conexão garantida com a lancha</span>
+    <span><span class="mk"></span> Fácil, ágil e seguro</span>
+    <span><span class="mk"></span> Veículos novos, revisados e motorista experiente</span>
+    <span><span class="mk"></span> Atendimento humanizado</span>
   </div>
 </div>
 
@@ -789,14 +773,14 @@
       <p>Aqui, segurança e horário são levados a sério — do primeiro contato no WhatsApp até a chegada ao cais.</p>
     </div>
     <div class="trust-grid">
-      <div class="trust-item"><div class="ic">⏰</div><h3>Pontualidade britânica</h3><p>Tolerância zero para atraso no embarque. O horário do barco manda na escala.</p></div>
+      <div class="trust-item"><div class="ic">⏰</div><h3>No horário, sempre</h3><p>Tolerância zero para atraso no embarque. O horário do barco manda na escala.</p></div>
       <div class="trust-item"><div class="ic">🛡️</div><h3>Seguro de passageiros</h3><p>Segurança viária inegociável, com seguro incluso em todos os trechos.</p></div>
       <div class="trust-item"><div class="ic">📍</div><h3>Rastreamento em tempo real</h3><p>Cada veículo com GPS. A operação enxerga a van do início ao cais.</p></div>
       <div class="trust-item"><div class="ic">✈️</div><h3>Suporte a atraso de voo</h3><p>Voo atrasou? A gente acompanha o status e reorganiza o encontro.</p></div>
-      <div class="trust-item"><div class="ic">🧽</div><h3>Limpeza rigorosa</h3><p>Checklist de limpeza e fluídos antes do primeiro embarque do dia.</p></div>
-      <div class="trust-item"><div class="ic">🤝</div><h3>Motorista do grupo</h3><p>Uniformizado, cordial e treinado na cultura FamILHA — seu primeiro anfitrião.</p></div>
+      <div class="trust-item"><div class="ic">🚐</div><h3>Veículos novos e revisados</h3><p>Frota nova, higienizada e com checklist de limpeza e fluídos antes de cada embarque.</p></div>
+      <div class="trust-item"><div class="ic">🤝</div><h3>Motorista experiente</h3><p>Profissional experiente, uniformizado e cordial — seu primeiro anfitrião na viagem.</p></div>
       <div class="trust-item"><div class="ic">⛴️</div><h3>Conexão com a lancha</h3><p>Integração direta com a embarcação do grupo. A travessia é coordenada, não improvisada.</p></div>
-      <div class="trust-item"><div class="ic">💬</div><h3>Atendimento 7h–22h</h3><p>Segunda a segunda. Confirmação na véspera e suporte durante toda a viagem.</p></div>
+      <div class="trust-item"><div class="ic">💬</div><h3>Atendimento humanizado</h3><p>Gente de verdade, 7h–22h, todo dia. Confirmação na véspera e suporte durante toda a viagem.</p></div>
     </div>
   </div>
 </section>
@@ -902,6 +886,28 @@
   </div>
 </section>
 
+<!-- ==================== TAMBÉM NO RIO (cross-sell) ==================== -->
+<section class="section section-nevoa" id="rio">
+  <div class="wrap">
+    <div class="rio-card">
+      <div class="rio-text">
+        <span class="eyebrow">Também no Rio</span>
+        <h2>Não vai pra Ilha? A gente roda o Rio.</h2>
+        <p>Além do transfer para a Ilha Grande, a Ilha Go atende a cidade inteira — com a mesma pontualidade, conforto e segurança de sempre.</p>
+        <div class="rio-actions">
+          <a class="btn btn-primary" href="https://wa.me/5521975407166?text=Oi!%20Quero%20saber%20dos%20servi%C3%A7os%20da%20Ilha%20Go%20no%20Rio." target="_blank" rel="noopener">Falar sobre o Rio</a>
+          <a class="btn btn-ghost" href="rio/">Ver serviços no Rio →</a>
+        </div>
+      </div>
+      <ul class="rio-list">
+        <li><b>🏙️ City Tour Rio</b><span>Os cartões-postais da cidade, com motorista e conforto — compartilhado ou privativo.</span></li>
+        <li><b>🚗 Carro privativo com motorista</b><span>Transfers e disposição pela cidade, no seu ritmo e horário.</span></li>
+        <li><b>🛡️ Blindado executivo</b><span>Segurança e discrição para quem precisa se deslocar no Rio.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== CTA FINAL (faixa aço) ==================== -->
 <section class="section cta">
   <div class="wrap">
@@ -931,6 +937,7 @@
           <a href="#pontos">Pontos de embarque</a>
           <a href="#como-funciona">A rota</a>
           <a href="#frota">Frota</a>
+          <a href="rio/">Serviços no Rio</a>
         </div>
         <div class="footer-col">
           <h4>Contato</h4>
@@ -950,7 +957,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="ano">2026</span> Ilha Go · Rio de Janeiro</span>
-      <span>TEMA "Preto & Cobalto · Aço" · v0.8.1 · 2026-07-08</span>
+      <span>TEMA "Preto & Cobalto · Aço" · v0.9.0 · 2026-07-10</span>
     </div>
   </div>
 </footer>
