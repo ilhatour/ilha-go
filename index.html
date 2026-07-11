@@ -4,19 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.11.0 · 2026-07-10 -->
+<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.12.0 · 2026-07-10 -->
 <!-- Transfer terrestre + travessia Rio <-> Ilha Grande (Vila do Abraao). -->
 <!-- Dados: TARIFARIO OFICIAL 2026 (Notion, fonte canonica) + pagina Ilha Tour. -->
 <!-- Deploy: static -> GitHub (ilhatour/ilha-go) -> Hostinger auto-deploy em public_html. -->
 
 <title>Ilha Go — Transfer Rio ↔ Ilha Grande, no horário do seu barco</title>
-<meta name="description" content="Transfer porta a porta do Rio até a Vila do Abraão, Ilha Grande. Terrestre + travessia, pontual e monitorado — a lancha espera a nossa van. Reserve pelo WhatsApp." />
+<meta name="description" content="Transfer porta a porta do Rio até a Vila do Abraão, Ilha Grande. Terrestre + travessia numa reserva só, alinhado aos horários da travessia — embarque garantido. Reserve pelo WhatsApp." />
 <meta name="theme-color" content="#000000" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Ilha Go — Transfer Rio ↔ Ilha Grande" />
-<meta property="og:description" content="Do aeroporto ao cais, no horário certo. A lancha espera a nossa van — você não perde a travessia." />
+<meta property="og:description" content="Te buscamos no Rio e te levamos até a Vila do Abraão. Transfer alinhado aos horários da travessia, com embarque garantido." />
 <meta property="og:image" content="https://ilhago.com.br/assets/logo-original.png" />
 
 <!-- Fonts: Barlow Semi Condensed (display), Inter (corpo), IBM Plex Mono (dados) -->
@@ -165,10 +165,24 @@
   .rm-cap{ font-family:var(--mono); font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; fill:var(--aco); }
   .rm-lbl{ font-family:var(--display); font-weight:700; font-size:13px; fill:#fff; }
   .rm-lbl.dim{ fill:var(--aco); }
-  .rm-van{ animation:rmVan 3.6s ease-in-out infinite alternate; }
-  .rm-boat{ animation:rmBoat 4.4s ease-in-out infinite; }
-  @keyframes rmVan{ from{ transform:translate(96px,58px);} to{ transform:translate(300px,58px);} }
-  @keyframes rmBoat{ 0%{ transform:translate(348px,58px); opacity:0;} 12%{opacity:1;} 82%{opacity:1;} 100%{ transform:translate(560px,58px); opacity:0;} }
+  /* relé sincronizado: carro vai → barco vai e volta → carro volta (um de cada vez) */
+  .rm-van{ animation:rmVan 9s ease-in-out infinite; }
+  .rm-boat{ animation:rmBoat 9s ease-in-out infinite; }
+  @keyframes rmVan{
+    0%   { transform:translate(96px,58px); }
+    18%  { transform:translate(300px,58px); }
+    76%  { transform:translate(300px,58px); }
+    94%  { transform:translate(96px,58px); }
+    100% { transform:translate(96px,58px); }
+  }
+  @keyframes rmBoat{
+    0%,22%   { transform:translate(348px,58px); opacity:0; }
+    26%      { transform:translate(348px,58px); opacity:1; }
+    45%      { transform:translate(560px,58px); opacity:1; }
+    52%      { transform:translate(560px,58px); opacity:1; }
+    70%      { transform:translate(348px,58px); opacity:1; }
+    74%,100% { transform:translate(348px,58px); opacity:0; }
+  }
   .rm-facts{ margin-top:.7rem; padding-top:.7rem; border-top:1px solid rgba(255,255,255,.12); display:flex; flex-wrap:wrap; gap:.4rem .9rem; font-family:var(--mono); font-size:.74rem; color:var(--clara); letter-spacing:.02em; }
   .rm-facts span{ display:inline-flex; align-items:center; gap:.45em; }
   .rm-facts span::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--ambar); }
@@ -475,7 +489,7 @@
       <img src="assets/logo-dark.png" alt="Ilha Go Transfer" class="brand-logo" width="435" height="191" />
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
-      <a href="#servicos">Transfers</a>
+      <a href="#servicos">Ilha Grande</a>
       <a href="#rio">Rio</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#frota">Frota</a>
@@ -491,10 +505,10 @@
   <div class="wrap">
     <div class="hero-inner">
       <span class="eyebrow">Transfer Rio ⇄ Ilha Grande</span>
-      <h1>Da sua porta no Rio <span class="soft">até a Vila do Abraão.</span></h1>
+      <h1>Te buscamos no Rio <span class="soft">e te levamos até a Vila do Abraão.</span></h1>
       <p class="hero-sub">
         Transporte terrestre e travessia numa reserva só, com conforto porta a porta.
-        <b>Você só embarca — o caminho é com a gente.</b> A lancha espera a nossa van; você não perde o barco.
+        <b>Você só embarca — o caminho é com a gente.</b> O transfer é alinhado aos horários da travessia: o embarque no próximo barco é garantido.
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#reservar">Reservar meu transfer</a>
@@ -535,7 +549,7 @@
         <div class="rm-facts">
           <span>3 saídas por dia</span>
           <span>~3h30 porta a porta</span>
-          <span>a lancha espera a van</span>
+          <span>embarque garantido na travessia</span>
         </div>
       </div>
     </div>
@@ -555,7 +569,7 @@
 <section class="section section-light" id="servicos">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow on-light">Transfers</span>
+      <span class="eyebrow on-light">Transfers · Ilha Grande</span>
       <h2>Do compartilhado ao blindado.</h2>
       <p>Escolha a categoria ideal para o seu deslocamento. Todas incluem ar-condicionado, motorista profissional e seguro de passageiros.</p>
     </div>
@@ -719,9 +733,9 @@
       <div class="stop final">
         <div class="stop-node">06</div>
         <div class="stop-body">
-          <h3>Conexão direta com a travessia</h3>
-          <p>Aqui está o nosso maior diferencial: a lancha aguarda a chegada do transfer. Assim que você desembarca do veículo, embarca no Flex Boat para uma travessia de aproximadamente 35 minutos até a Vila do Abraão.</p>
-          <p class="stop-kicker">Uma única operação — sem correria, sem desencontros e sem o risco de perder a embarcação.</p>
+          <h3>Conexão com a travessia</h3>
+          <p>Nosso maior diferencial é a sincronia: o transfer é planejado para chegar ao cais alinhado aos horários da travessia. Você desembarca do veículo e segue direto para o Flex Boat, numa travessia de aproximadamente 35 minutos até a Vila do Abraão.</p>
+          <p class="stop-kicker">Uma operação sincronizada — sem correria, sem desencontros e com embarque garantido no próximo barco.</p>
         </div>
       </div>
     </div>
@@ -733,7 +747,7 @@
   <div class="wrap">
     <div class="rio-card">
       <div class="rio-text">
-        <span class="eyebrow">Também no Rio</span>
+        <span class="eyebrow">Transfers · Rio</span>
         <h2>A Ilha Go também atende o Rio de Janeiro.</h2>
         <p>Além do transfer para a Ilha Grande, atendemos a cidade inteira — com a mesma pontualidade, conforto e segurança.</p>
         <div class="rio-actions">
@@ -744,7 +758,7 @@
       <ul class="rio-list">
         <li><b>🏙️ City Tour Rio</b><span>Os cartões-postais da cidade, com motorista e conforto — compartilhado ou privativo.</span></li>
         <li><b>🚗 Carro privativo com motorista</b><span>Transfers e disposição pela cidade, no seu horário.</span></li>
-        <li><b>🛡️ Blindado executivo</b><span>Segurança e discrição para quem precisa se deslocar no Rio.</span></li>
+        <li><b>🛡️ Aluguel de carro blindado</b><span>Diária de 6h, até 100 km, com motorista — a partir de R$ 1.000.</span></li>
       </ul>
     </div>
   </div>
@@ -884,8 +898,8 @@
         <p class="faq-a">Acompanhamos o status do seu voo (GIG/SDU) e reorganizamos o ponto e o horário de encontro. Por isso confirmamos tudo na véspera e monitoramos a operação no dia.</p>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">A lancha espera mesmo o transfer?</summary>
-        <p class="faq-a">Sim. Como a operação terrestre e a marítima são do mesmo grupo, a embarcação aguarda a chegada da nossa van. A travessia em Flex Boat leva ~35 min até a Vila do Abraão.</p>
+        <summary class="faq-q">Como funciona a conexão com a travessia?</summary>
+        <p class="faq-a">O transfer é alinhado aos horários da travessia: planejamos sua chegada ao cais para o embarque no próximo barco, que é garantido. A travessia em Flex Boat leva cerca de 35 min até a Vila do Abraão.</p>
       </details>
       <details class="faq-item">
         <summary class="faq-q">O que está incluso?</summary>
@@ -948,7 +962,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="ano">2026</span> Ilha Go · Rio de Janeiro</span>
-      <span>TEMA "Preto & Cobalto · Aço" · v0.11.0 · 2026-07-10</span>
+      <span>TEMA "Preto & Cobalto · Aço" · v0.12.0 · 2026-07-10</span>
     </div>
   </div>
 </footer>
