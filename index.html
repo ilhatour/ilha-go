@@ -4,13 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.12.0 · 2026-07-10 -->
+<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.13.0 · 2026-07-10 -->
 <!-- Transfer terrestre + travessia Rio <-> Ilha Grande (Vila do Abraao). -->
 <!-- Dados: TARIFARIO OFICIAL 2026 (Notion, fonte canonica) + pagina Ilha Tour. -->
 <!-- Deploy: static -> GitHub (ilhatour/ilha-go) -> Hostinger auto-deploy em public_html. -->
 
 <title>Ilha Go — Transfer Rio ↔ Ilha Grande, no horário do seu barco</title>
-<meta name="description" content="Transfer porta a porta do Rio até a Vila do Abraão, Ilha Grande. Terrestre + travessia numa reserva só, alinhado aos horários da travessia — embarque garantido. Reserve pelo WhatsApp." />
+<meta name="description" content="Transfer executivo Rio ⇄ Ilha Grande, porta a porta até a Vila do Abraão. Compra online segura intermediada pela Ilha Tour (CADASTUR, pagamento blindado pela Cielo 3DS) ou reserva pelo WhatsApp. Terrestre + travessia numa reserva só, com embarque garantido." />
 <meta name="theme-color" content="#000000" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 
@@ -18,6 +18,27 @@
 <meta property="og:title" content="Ilha Go — Transfer Rio ↔ Ilha Grande" />
 <meta property="og:description" content="Te buscamos no Rio e te levamos até a Vila do Abraão. Transfer alinhado aos horários da travessia, com embarque garantido." />
 <meta property="og:image" content="https://ilhago.com.br/assets/logo-original.png" />
+
+<!-- Dados estruturados: reforça compra segura intermediada pela Ilha Tour -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Ilha Go",
+  "description": "Transfer executivo Rio ⇄ Ilha Grande, porta a porta até a Vila do Abraão. A compra online é segura e intermediada pela Ilha Tour, agência do grupo — CADASTUR, pagamento blindado pela Cielo 3DS, voucher de 12 meses e garantia de arrependimento.",
+  "url": "https://ilhago.com.br/",
+  "telephone": "+55-21-97540-7166",
+  "areaServed": ["Rio de Janeiro", "Ilha Grande", "Angra dos Reis"],
+  "makesOffer": {
+    "@type": "Offer",
+    "name": "Transfer Rio ⇄ Ilha Grande",
+    "priceCurrency": "BRL",
+    "price": "200",
+    "seller": { "@type": "TravelAgency", "name": "Ilha Tour", "url": "https://ilhatour.com" }
+  },
+  "sameAs": ["https://instagram.com/ilha.go", "https://ilhatour.com"]
+}
+</script>
 
 <!-- Fonts: Barlow Semi Condensed (display), Inter (corpo), IBM Plex Mono (dados) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -169,19 +190,17 @@
   .rm-van{ animation:rmVan 9s ease-in-out infinite; }
   .rm-boat{ animation:rmBoat 9s ease-in-out infinite; }
   @keyframes rmVan{
-    0%   { transform:translate(96px,58px); }
-    18%  { transform:translate(300px,58px); }
-    76%  { transform:translate(300px,58px); }
-    94%  { transform:translate(96px,58px); }
-    100% { transform:translate(96px,58px); }
+    0%   { transform:translate(96px,55px); }
+    18%  { transform:translate(300px,55px); }
+    76%  { transform:translate(300px,55px); }
+    94%  { transform:translate(96px,55px); }
+    100% { transform:translate(96px,55px); }
   }
   @keyframes rmBoat{
-    0%,22%   { transform:translate(348px,58px); opacity:0; }
-    26%      { transform:translate(348px,58px); opacity:1; }
-    45%      { transform:translate(560px,58px); opacity:1; }
-    52%      { transform:translate(560px,58px); opacity:1; }
-    70%      { transform:translate(348px,58px); opacity:1; }
-    74%,100% { transform:translate(348px,58px); opacity:0; }
+    0%,24%   { transform:translate(348px,55px); }
+    45%      { transform:translate(560px,55px); }
+    52%      { transform:translate(560px,55px); }
+    70%,100% { transform:translate(348px,55px); }
   }
   .rm-facts{ margin-top:.7rem; padding-top:.7rem; border-top:1px solid rgba(255,255,255,.12); display:flex; flex-wrap:wrap; gap:.4rem .9rem; font-family:var(--mono); font-size:.74rem; color:var(--clara); letter-spacing:.02em; }
   .rm-facts span{ display:inline-flex; align-items:center; gap:.45em; }
@@ -528,19 +547,10 @@
           <circle cx="68" cy="58" r="6" fill="#FFB020"/>
           <circle cx="330" cy="58" r="6" fill="#ffffff"/>
           <circle cx="566" cy="58" r="6" fill="#0047AB" stroke="#ffffff" stroke-width="1.5"/>
-          <!-- carro (ida e volta) -->
-          <g class="rm-van" transform="translate(200,58)">
-            <rect x="-15" y="-13" width="30" height="12" rx="3" fill="#FFB020"/>
-            <rect x="-11" y="-10" width="10" height="6" rx="1" fill="#0b0d10" opacity=".55"/>
-            <circle cx="-8" cy="1" r="3" fill="#0b0d10"/>
-            <circle cx="8" cy="1" r="3" fill="#0b0d10"/>
-          </g>
-          <!-- lancha (indo) -->
-          <g class="rm-boat" transform="translate(450,58)">
-            <path d="M -13 0 L 13 0 L 9 7 L -9 7 Z" fill="#EAF0EE"/>
-            <rect x="-6" y="-8" width="12" height="8" rx="1.5" fill="#0047AB"/>
-            <rect x="-3" y="-6" width="5" height="4" fill="#cfe0ff" opacity=".85"/>
-          </g>
+          <!-- carro (ida e volta) — emoji padrão -->
+          <text class="rm-van" transform="translate(200,55)" text-anchor="middle" dominant-baseline="central" font-size="22">🚗</text>
+          <!-- lancha / Flex Boat (indo e voltando) — emoji padrão -->
+          <text class="rm-boat" transform="translate(450,55)" text-anchor="middle" dominant-baseline="central" font-size="21">🚤</text>
           <!-- rótulos -->
           <text class="rm-lbl" x="68" y="94" text-anchor="middle">Rio</text>
           <text class="rm-lbl dim" x="330" y="94" text-anchor="middle">Cais</text>
@@ -571,7 +581,7 @@
     <div class="sec-head">
       <span class="eyebrow on-light">Transfers · Ilha Grande</span>
       <h2>Do compartilhado ao blindado.</h2>
-      <p>Escolha a categoria ideal para o seu deslocamento. Todas incluem ar-condicionado, motorista profissional e seguro de passageiros.</p>
+      <p>Escolha a categoria ideal para o seu deslocamento. Todas incluem ar-condicionado, motorista profissional e conforto porta a porta.</p>
     </div>
 
     <div class="serv-grid">
@@ -805,7 +815,7 @@
       <div class="trust-item"><div class="ic">⏰</div><h3>No horário, sempre</h3><p>Tolerância zero com atrasos. A escala é definida pelo horário da embarcação.</p></div>
       <div class="trust-item"><div class="ic">🚐</div><h3>Veículos novos e revisados</h3><p>Frota nova, higienizada e com checklist de limpeza e fluídos antes de cada embarque.</p></div>
       <div class="trust-item"><div class="ic">🤝</div><h3>Motorista experiente</h3><p>Condutores experientes, uniformizados e treinados — discrição e cordialidade do início ao fim.</p></div>
-      <div class="trust-item"><div class="ic">🛡️</div><h3>Seguro de passageiros</h3><p>Seguro incluso em todos os trechos. Segurança viária inegociável.</p></div>
+      <div class="trust-item"><div class="ic">🛡️</div><h3>Operação regularizada</h3><p>Frota licenciada e operação regularizada para o transporte de passageiros.</p></div>
       <div class="trust-item"><div class="ic">📍</div><h3>Rastreamento em tempo real</h3><p>Todos os veículos com GPS. A central acompanha o trajeto do início ao cais.</p></div>
       <div class="trust-item"><div class="ic">💬</div><h3>Atendimento dedicado</h3><p>Das 7h às 22h, todos os dias. Confirmação na véspera e suporte durante toda a viagem.</p></div>
     </div>
@@ -824,7 +834,7 @@
     <div class="buy-grid">
       <!-- OPÇÃO 1 — compra online pela Ilha Tour -->
       <article class="buy-card buy-online">
-        <span class="buy-tag">Compra online · pagamento seguro</span>
+        <span class="buy-tag">Reservar online · Ilha Tour</span>
         <h3>Comprar agora, online</h3>
         <p>O checkout é pela <b>Ilha Tour</b> — a agência do nosso grupo que intermedeia os pagamentos digitais. Você compra com a segurança de quem já vendeu milhares de transfers.</p>
         <ul>
@@ -838,15 +848,15 @@
 
       <!-- OPÇÃO 2 — WhatsApp Ilha Go -->
       <article class="buy-card buy-whats">
-        <span class="buy-tag alt">Atendimento dedicado</span>
+        <span class="buy-tag alt">Reservar por WhatsApp · Ilha Go</span>
         <h3>Reservar pelo WhatsApp</h3>
-        <p>Fale diretamente com a nossa equipe para transfers privativos, blindado executivo ou rotas sob medida.</p>
+        <p>Fale diretamente com a equipe da <b>Ilha Go</b> para transfers privativos, blindado executivo ou rotas sob medida.</p>
         <ul>
           <li>Atendimento 7h–22h, todo dia</li>
           <li>Confirmação do horário na véspera</li>
           <li>Privativo, blindado e grupos</li>
         </ul>
-        <a class="btn btn-whats" href="https://wa.me/5521975407166?text=Oi!%20Quero%20reservar%20um%20transfer%20com%20a%20Ilha%20Go." target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="btn btn-whats" href="https://wa.me/5521975407166?text=Oi!%20Quero%20reservar%20um%20transfer%20com%20a%20Ilha%20Go." target="_blank" rel="noopener">Falar com a Ilha Go</a>
         <span class="buy-note">WhatsApp Ilha Go · (21) 97540-7166</span>
       </article>
     </div>
@@ -903,7 +913,7 @@
       </details>
       <details class="faq-item">
         <summary class="faq-q">O que está incluso?</summary>
-        <p class="faq-a">Transporte terrestre Rio → Mangaratiba ou Conceição, travessia marítima em Flex Boat, integração entre os modais, ar-condicionado, motorista profissional e seguro. Não inclui alimentação no trajeto.</p>
+        <p class="faq-a">Transporte terrestre Rio → Mangaratiba ou Conceição, travessia marítima em Flex Boat, integração entre os modais, ar-condicionado e motorista profissional. Não inclui alimentação no trajeto.</p>
       </details>
       <details class="faq-item">
         <summary class="faq-q">Posso remarcar ou cancelar?</summary>
@@ -962,7 +972,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="ano">2026</span> Ilha Go · Rio de Janeiro</span>
-      <span>TEMA "Preto & Cobalto · Aço" · v0.12.0 · 2026-07-10</span>
+      <span>TEMA "Preto & Cobalto · Aço" · v0.13.0 · 2026-07-10</span>
     </div>
   </div>
 </footer>
