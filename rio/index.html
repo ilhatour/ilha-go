@@ -87,6 +87,14 @@
   .pill-inner span{ display:inline-flex; align-items:center; gap:.55em; }
   .pill-inner .mk{ width:7px; height:7px; border-radius:50%; background:var(--ambar); }
 
+  /* FAQ */
+  details.faq{ border-bottom:1px solid var(--linha-cl); }
+  .faq summary{ cursor:pointer; list-style:none; font-family:var(--display); font-weight:700; font-size:1.2rem; color:var(--cobalto-esc); padding:1.1rem 2rem 1.1rem 0; position:relative; }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::after{ content:"+"; position:absolute; right:.2rem; top:50%; transform:translateY(-50%); color:var(--ambar); font-size:1.5rem; }
+  details.faq[open] summary::after{ content:"–"; }
+  .faq p{ color:var(--tinta-60); padding:0 0 1.2rem; max-width:60ch; }
+
   /* CTA */
   .cta{ background:var(--aco); text-align:center; }
   .cta h2{ font-size:clamp(2rem,1.6rem+2.6vw,3.2rem); color:var(--preto); text-transform:uppercase; max-width:20ch; margin-inline:auto; }
@@ -183,6 +191,20 @@
         <a class="btn btn-primary" href="../blindado-executivo-rio/">Ver locação do blindado →</a>
       </article>
     </div>
+  </div>
+</section>
+
+<section class="section section-nevoa">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow on-light">Dúvidas</span>
+      <h2>Perguntas frequentes.</h2>
+    </div>
+    <details class="faq"><summary>Preciso pegar um voo. O horário é confiável com o trânsito?</summary><p>O trânsito do Rio entra no nosso planejamento e acompanhamos a rota em tempo real. Para quem vai embarcar em um voo, recomendamos combinar um horário com boa folga — nossa equipe orienta a melhor janela conforme o seu voo, para você chegar ao aeroporto com tranquilidade.</p></details>
+    <details class="faq"><summary>E se meu voo atrasar?</summary><p>Monitoramos os voos com chegada ao Galeão (GIG) e ao Santos Dumont (SDU). Ainda assim, qualquer alteração no horário fica sujeita à disponibilidade de veículos e horários — por isso recomendamos programar o serviço com uma margem de 4 a 6 horas após a chegada prevista do voo.</p></details>
+    <details class="faq"><summary>Como funciona a cobrança do carro privativo e do blindado?</summary><p>Trabalhamos por trecho ou por diária. O blindado, por exemplo, tem diária de 6 horas com até 100 km inclusos (a partir de R$ 1.000); horas e km adicionais são cobrados à parte. Conte o trajeto que montamos o orçamento.</p></details>
+    <details class="faq"><summary>Vocês atendem fora do Rio de Janeiro?</summary><p>Sim, sob consulta. Além da cidade, atendemos rotas para Angra dos Reis, Ilha Grande e outros destinos — fale com a gente para um orçamento.</p></details>
+    <details class="faq"><summary>Como faço a reserva?</summary><p>Direto pelo WhatsApp da Ilha Go: (21) 97540-7166. Informe a data, o horário e o trajeto, e confirmamos a disponibilidade e o valor.</p></details>
   </div>
 </section>
 
