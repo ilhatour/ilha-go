@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- ILHA GO · Blog · índice · v1.0.0 · 2026-07-10 -->
+<title>Blog da Ilha Go — Dicas para chegar bem à Ilha Grande</title>
+<meta name="description" content="Dicas e informações para sua viagem à Ilha Grande: como chegar, trânsito da Rio–Santos, melhores horários e tudo sobre o transfer da Ilha Go." />
+<link rel="canonical" href="https://ilhago.com.br/blog/" />
+<meta name="theme-color" content="#000000" />
+<link rel="icon" type="image/png" href="../assets/favicon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Blog da Ilha Go — Dicas para chegar bem à Ilha Grande" />
+<meta property="og:description" content="Como chegar, trânsito da Rio–Santos, melhores horários e tudo sobre o transfer para a Ilha Grande." />
+<meta property="og:image" content="https://ilhago.com.br/assets/hero-rio.jpg" />
+<meta property="og:url" content="https://ilhago.com.br/blog/" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --preto:#000000; --preto-2:#101419; --cobalto:#0047AB; --cobalto-esc:#00337F;
+    --cobalto-tint:#DCE6F5; --aco:#9AA7B2; --aco-esc:#66727E; --nevoa:#EEF1F4; --branco:#FFFFFF;
+    --ambar:#FFB020; --ambar-hi:#FFC24D; --ambar-ink:#2E2000; --whats:#25D366;
+    --tinta:#14181C; --tinta-60:#55606B; --clara:#F0F3F6; --clara-60:#9AA7B2;
+    --linha-esc:rgba(255,255,255,.14); --linha-cl:rgba(0,0,0,.10);
+    --display:"Barlow Semi Condensed","Arial Narrow",sans-serif;
+    --body:"Inter",system-ui,-apple-system,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --wrap:1180px; --pad:clamp(1.25rem,5vw,2.5rem); --radius:14px; --radius-lg:22px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; font-family:var(--body); color:var(--tinta); background:var(--branco); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  h1,h2,h3{ font-family:var(--display); font-weight:800; line-height:1.06; margin:0; letter-spacing:-.01em; }
+  .wrap{ width:100%; max-width:var(--wrap); margin-inline:auto; padding-inline:var(--pad); }
+  .eyebrow{ font-family:var(--mono); font-weight:600; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; background:var(--cobalto); color:#fff; padding:.5em 1em; border-radius:999px; display:inline-block; }
+  .btn{ display:inline-flex; align-items:center; gap:.55em; font-family:var(--display); font-weight:700; font-size:1.05rem; letter-spacing:.03em; text-transform:uppercase; padding:.85em 1.5em; border-radius:999px; border:2px solid transparent; cursor:pointer; transition:transform .15s ease; }
+  .btn-primary{ background:var(--ambar); color:var(--ambar-ink); }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--ambar-hi); }
+
+  .nav{ position:sticky; top:0; z-index:50; background:rgba(0,0,0,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--linha-esc); }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; height:66px; }
+  .brand-logo{ height:38px; width:auto; display:block; }
+  .nav-links{ display:flex; align-items:center; gap:1.6rem; }
+  .nav-links a{ font-size:.92rem; color:var(--clara-60); font-weight:500; }
+  .nav-links a:hover{ color:var(--clara); }
+  .nav-cta{ display:inline-flex; font-size:.92rem; padding:.6em 1.2em; }
+  @media (max-width:640px){ .nav-links{ display:none; } }
+
+  .head{ background:var(--preto); color:var(--clara); padding-block:clamp(3rem,7vw,4.5rem); }
+  .head h1{ font-size:clamp(2.2rem,1.6rem+3vw,3.6rem); text-transform:uppercase; color:#fff; margin-top:1rem; }
+  .head p{ margin-top:1rem; max-width:52ch; color:var(--clara-60); font-size:1.1rem; }
+
+  .list{ padding-block:clamp(3rem,6vw,4.5rem); }
+  .posts{ display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.4rem; }
+  .post-card{ display:flex; flex-direction:column; border:1px solid var(--linha-cl); border-radius:var(--radius-lg); overflow:hidden; background:var(--branco); transition:transform .18s ease, box-shadow .18s ease; }
+  .post-card:hover{ transform:translateY(-4px); box-shadow:0 22px 44px -26px rgba(0,0,0,.35); }
+  .post-card .img{ aspect-ratio:16/9; overflow:hidden; }
+  .post-card .img img{ width:100%; height:100%; object-fit:cover; }
+  .post-card .body{ padding:1.4rem 1.5rem 1.7rem; display:flex; flex-direction:column; flex:1; }
+  .post-card .tag{ font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--cobalto-esc); background:var(--cobalto-tint); padding:.3em .7em; border-radius:99px; align-self:flex-start; }
+  .post-card h2{ font-size:1.5rem; color:var(--cobalto-esc); margin:.8rem 0 .5rem; }
+  .post-card p{ color:var(--tinta-60); font-size:.98rem; margin:0 0 1.2rem; }
+  .post-card .more{ margin-top:auto; font-family:var(--display); font-weight:700; color:var(--ambar-ink); background:var(--ambar); padding:.6em 1em; border-radius:99px; align-self:flex-start; font-size:.95rem; text-transform:uppercase; }
+  .post-card .meta{ font-family:var(--mono); font-size:.72rem; color:var(--tinta-60); margin-bottom:.6rem; }
+
+  .footer{ background:var(--preto); color:var(--clara-60); padding-block:2.6rem; border-top:1px solid var(--linha-esc); }
+  .footer-inner{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:center; }
+  .footer a{ color:var(--clara-60); } .footer a:hover{ color:var(--clara); }
+  .footer .mono{ font-family:var(--mono); font-size:.74rem; letter-spacing:.04em; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="../" aria-label="Ilha Go — início"><img src="../assets/logo-dark.png" alt="Ilha Go Transfer" class="brand-logo" width="435" height="191" /></a>
+    <nav class="nav-links">
+      <a href="../">Transfer p/ Ilha</a>
+      <a href="../rio/">Serviços no Rio</a>
+      <a href="../blindado-executivo-rio/">Blindado</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="../#reservar">Reservar</a>
+  </div>
+</header>
+
+<section class="head">
+  <div class="wrap">
+    <span class="eyebrow">Blog da Ilha Go</span>
+    <h1>Dicas para chegar bem à Ilha Grande</h1>
+    <p>Tudo o que você precisa saber para viajar tranquilo: como chegar, o trânsito da Rio–Santos, os melhores horários e os bastidores do transfer.</p>
+  </div>
+</section>
+
+<section class="list">
+  <div class="wrap">
+    <div class="posts">
+      <a class="post-card" href="transito-para-ilha-grande/">
+        <div class="img"><img src="../assets/hero-rio.jpg" alt="Baía de Guanabara e Pão de Açúcar — o começo do caminho até a Ilha Grande" width="1800" height="1012" /></div>
+        <div class="body">
+          <span class="tag">Como chegar</span>
+          <div class="meta" style="margin-top:.8rem">Julho de 2026 · 4 min de leitura</div>
+          <h2>Trânsito para a Ilha Grande: como chegar sem estresse</h2>
+          <p>A Rio–Santos, os melhores horários e como o transfer da Ilha Go garante uma chegada tranquila ao cais e à Vila do Abraão.</p>
+          <span class="more">Ler post →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>© <span id="ano">2026</span> Ilha Go · Rio de Janeiro · <a href="https://wa.me/5521975407166" target="_blank" rel="noopener">(21) 97540-7166</a> · <a href="https://instagram.com/ilha.go" target="_blank" rel="noopener">@ilha.go</a></span>
+    <span class="mono"><a href="../">← Ilha Go · Transfer Rio ⇄ Ilha Grande</a></span>
+  </div>
+</footer>
+
+<script>document.getElementById('ano').textContent = new Date().getFullYear();</script>
+</body>
+</html>
