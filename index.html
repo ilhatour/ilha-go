@@ -4,13 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.20.0 · 2026-07-21 -->
+<!-- ILHA GO · one-page · TEMA "Preto & Cobalto · Aço" · v0.21.0 · 2026-07-21 -->
 <!-- Transfer terrestre + travessia Rio <-> Ilha Grande (Vila do Abraao). -->
 <!-- Dados: TARIFARIO OFICIAL 2026 (Notion, fonte canonica) + pagina Ilha Tour. -->
 <!-- Deploy: static -> GitHub (ilhatour/ilha-go) -> Hostinger auto-deploy em public_html. -->
 
-<title>Ilha Go — Transfer Rio ↔ Ilha Grande, no horário do seu barco</title>
-<meta name="description" content="Transfer executivo Rio ⇄ Ilha Grande, porta a porta até a Vila do Abraão. Compra online segura intermediada pela Ilha Tour (CADASTUR, pagamento blindado pela Cielo 3DS) ou reserva pelo WhatsApp. Terrestre + travessia numa reserva só, com embarque garantido." />
+<title>Transfer Rio ↔ Ilha Grande | Ilha Go — no horário do seu barco</title>
+<meta name="description" content="Operadora de transfer Rio ⇄ Ilha Grande: conforto e segurança do ponto A ao ponto B. Te buscamos no Rio e cuidamos do transporte terrestre + travessia numa reserva só, no horário do seu barco. Compra online segura pela Ilha Tour (CADASTUR · Cielo 3DS) ou pelo WhatsApp." />
 <meta name="theme-color" content="#000000" />
 <link rel="canonical" href="https://ilhago.com.br/" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -26,7 +26,7 @@
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   "name": "Ilha Go",
-  "description": "Transfer executivo Rio ⇄ Ilha Grande, porta a porta até a Vila do Abraão. A compra online é segura e intermediada pela Ilha Tour, agência do grupo — CADASTUR, pagamento blindado pela Cielo 3DS, voucher de 12 meses e garantia de arrependimento.",
+  "description": "Operadora de transfer Rio ⇄ Ilha Grande: conforto e segurança do ponto A ao ponto B, com transporte terrestre + travessia numa reserva só, no horário do seu barco. A compra online é segura e intermediada pela Ilha Tour, agência do grupo — CADASTUR, pagamento blindado pela Cielo 3DS, voucher de 12 meses e garantia de arrependimento.",
   "url": "https://ilhago.com.br/",
   "telephone": "+55-21-97540-7166",
   "areaServed": ["Rio de Janeiro", "Ilha Grande", "Angra dos Reis"],
@@ -227,6 +227,21 @@
   }
   .trustbar-inner span{ display:inline-flex; align-items:center; gap:.55em; }
   .trustbar-inner .mk{ width:7px; height:7px; border-radius:50%; background:var(--ambar); display:inline-block; }
+
+  /* Tabela completa do privativo (expansível) */
+  .priv-table{ margin-top:2rem; border:1px solid var(--linha); border-radius:12px; background:#fff; overflow:hidden; }
+  .priv-table summary{ cursor:pointer; padding:1rem 1.25rem; font-weight:600; color:var(--cobalto-esc); list-style:none; display:flex; align-items:center; gap:.5rem; }
+  .priv-table summary::-webkit-details-marker{ display:none; }
+  .priv-table summary::before{ content:"＋"; font-family:var(--mono); color:var(--ambar); font-weight:700; }
+  .priv-table[open] summary::before{ content:"－"; }
+  .priv-table summary span{ font-weight:400; color:var(--tinta-60); font-size:.9rem; }
+  .priv-table-scroll{ overflow-x:auto; padding:0 1.25rem; }
+  .priv-table table{ width:100%; border-collapse:collapse; font-size:.95rem; min-width:340px; }
+  .priv-table th, .priv-table td{ padding:.6rem .75rem; text-align:left; border-top:1px solid var(--linha); }
+  .priv-table thead th{ font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--aco); border-top:none; }
+  .priv-table td:first-child{ font-weight:600; color:var(--tinta); white-space:nowrap; }
+  .priv-table td:not(:first-child){ font-family:var(--mono); color:var(--cobalto-esc); }
+  .priv-table-note{ padding:.9rem 1.25rem 1.25rem; margin:0; font-size:.82rem; color:var(--tinta-60); }
 
   /* ============================================================
      SEÇÕES GENÉRICAS
@@ -657,6 +672,28 @@
       </article>
     </div>
 
+    <details class="priv-table">
+      <summary>Ver tabela completa do transfer privativo <span>(preço por trecho, por nº de passageiros)</span></summary>
+      <div class="priv-table-scroll">
+        <table>
+          <thead>
+            <tr><th>Passageiros</th><th>Terrestre + travessia</th><th>Só terrestre</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1 pax</td><td>R$ 660</td><td rowspan="3">R$ 600</td></tr>
+            <tr><td>2 pax</td><td>R$ 710</td></tr>
+            <tr><td>3 pax</td><td>R$ 770</td></tr>
+            <tr><td>4 pax</td><td>R$ 1.020</td><td>R$ 800</td></tr>
+            <tr><td>5 pax</td><td>R$ 1.170</td><td>R$ 900</td></tr>
+            <tr><td>6 pax</td><td>R$ 1.330</td><td>R$ 1.000</td></tr>
+            <tr><td>7 pax</td><td>R$ 1.590</td><td rowspan="2">R$ 1.200</td></tr>
+            <tr><td>8 pax</td><td>R$ 1.640</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="priv-table-note">Valores por trecho, para o grupo inteiro (não por pessoa). Ida e volta = 2 trechos. Fechamento e forma de pagamento pelo WhatsApp.</p>
+    </details>
+
     <div class="routes-note">
       <span>Também operamos:</span>
       <span class="chip">Rio × Mangaratiba</span>
@@ -946,7 +983,7 @@
     <div class="footer-top">
       <div>
         <img src="assets/logo-dark.png" alt="Ilha Go Transfer" class="footer-logo" width="435" height="191" />
-        <p class="footer-tag">Transporte executivo Rio ⇄ Ilha Grande. Pontualidade, conforto e segurança do embarque à chegada.</p>
+        <p class="footer-tag">Operadora de transfer no Rio de Janeiro. Conforto e segurança do ponto A ao ponto B — Ilha Grande, City Tour e transporte executivo.</p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
@@ -976,7 +1013,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="ano">2026</span> Ilha Go · Rio de Janeiro</span>
-      <span>TEMA "Preto & Cobalto · Aço" · v0.20.0 · 2026-07-21</span>
+      <span>TEMA "Preto & Cobalto · Aço" · v0.21.0 · 2026-07-21</span>
     </div>
   </div>
 </footer>
